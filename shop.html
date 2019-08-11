@@ -27,6 +27,16 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        
+        $(document).ready(function(){
+                $("#ChocolateView").click(function(){
+                $("#product-1").attr('src','images/categoryitem1.jpg')
+                });
+        });
+    </script>
   </head>
   <body class="goto-here">
 		<div class="py-1 bg-primary">
@@ -98,7 +108,7 @@
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
     					<li><a href="#" class="active">All</a></li>
-    					<li><a href="#">Chocolate</a></li>
+    					<li id="ChocolateView"><a href="#" >Chocolate</a></li>
     					<li><a href="#">Cheese</a></li>
     					<li><a href="#">Fruit</a></li>
     					<li><a href="#">Cupcake</a></li>
@@ -108,7 +118,7 @@
     		<div class="row">
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="product">
-                        <a href="shop.html" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
+                        <a href="shop.html" class="img-prod"><img id="product-1" class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
                             <span class="status">30%</span>
                             <div class="overlay"></div>
                         </a>
