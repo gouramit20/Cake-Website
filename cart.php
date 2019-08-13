@@ -32,36 +32,50 @@
 						      </tr>
 						    </thead>
 						    <tbody>
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>Bell Pepper</h3>
-						        	<p>Far far away, behind the word mountains, far from the countries</p>
-						        </td>
-						        
-						        <td class="price">$4.90</td>
 
-                    <td class="Size">
-                      <select name="size">
-                        <option class="dropdown-item" value="Small">Small(1 KG)</option>
-                        <option class="dropdown-item" value="Medium">Medium(1.5 KG)</option>
-                        <option class="dropdown-item" value="Large">Large(2 KG)</option>
-                      </select>
-                  
-                    </td><!-- drop down added -->
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">$4.90</td>
+						    	<?php 
 
-						      </tr><!-- END TR-->
+
+									$cakes = array("BlackForest", "Dark Chocolate", "Stawberry Cheese Cake");
+
+									for($i=0;$i<count($cakes);$i++)
+									{
+							    	
+
+									    echo '	<tr class="text-center">
+										        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+										        
+										        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
+										        
+										        <td class="product-name">
+										        	<h3>'.$cakes[$i].'</h3>
+										        	<p>Far far away, behind the word mountains, far from the countries</p>
+										        </td>
+										        
+										        <td class="price">$4.90</td>
+
+							                    <td class="Size">
+							                      <select name="size">
+							                        <option class="dropdown-item" value="Small">Small(1 KG)</option>
+							                        <option class="dropdown-item" value="Medium">Medium(1.5 KG)</option>
+							                        <option class="dropdown-item" value="Large">Large(2 KG)</option>
+							                      </select>
+							                  
+							                    </td><!-- drop down added -->
+										        
+										        <td class="quantity">
+										        	<div class="input-group mb-3">
+									             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+									          	</div>
+									          	</td>
+									        	<td class="total">$4.90</td>
+
+									     		 </tr><!-- END TR-->
+								      		';
+								  	}
+
+						    	?>
+						      
 
 						      <tr class="text-center">
 						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>

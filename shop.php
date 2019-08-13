@@ -1,3 +1,5 @@
+
+
 <?php include 'header.php';?>
 
  <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
@@ -10,7 +12,6 @@
         </div>
       </div>
     </div>
-
     <section class="ftco-section">
     	<div class="container">
     		<div class="row justify-content-center">
@@ -25,353 +26,95 @@
     			</div>
     		</div>
     		<div class="row">
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="product">
-                        <a href="product-single.html" class="img-prod"><img id="product-1" class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
-                            <span class="status">30%</span>
-                            <div class="overlay"></div>
-                        </a>
-                        <div class="text py-3 pb-4 px-3 text-center">
-                            <h3 id="productName-1"><a href="#">Chocolate Truffle</a></h3>
-                            <div class="d-flex">
-                                <div class="pricing">
-                                    <p class="price"><!-- <span class="mr-2 price-dc">Rs.220.00</span> -->
-                                        <span id="productPrice-1" class="price-sale">Rs.200.00</span></p>
-                                </div>
-                            </div>
-                            <div class="bottom-area d-flex px-3">
-                                <div class="m-auto d-flex">
-                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                        <span><i class="ion-ios-menu"></i></span>
-                                    </a>
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                        <span><i class="ion-ios-cart"></i></span>
-                                    </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                        <span><i class="ion-ios-heart"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="product">
-                        <a href="product-single.html" class="img-prod"><img id="product-2" class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
-                            <div class="overlay"></div>
-                        </a>
-                        <div class="text py-3 pb-4 px-3 text-center">
-                            <h3 id="productName-2"><a href="#">Strawberry Cheese Cake</a></h3>
-                            <div class="d-flex">
-                                <div class="pricing">
-                                    <p class="price"><span id="productPrice-2">Rs.320.00</span></p>
-                                </div>
-                            </div>
-                            <div class="bottom-area d-flex px-3">
-                                <div class="m-auto d-flex">
-                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                        <span><i class="ion-ios-menu"></i></span>
-                                    </a>
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                        <span><i class="ion-ios-cart"></i></span>
-                                    </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                        <span><i class="ion-ios-heart"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="product">
-                        <a href="product-single.html" class="img-prod"><img id="product-3" class="img-fluid" src="images/product-3.jpg" alt="Colorlib Template">
+                    <?php 
+                       
 
-                            <div class="overlay"></div>
-                        </a>
-                        <div class="text py-3 pb-4 px-3 text-center">
-                            <h3 id="productName-3"><a href="#">Chocolate Cake</a></h3>
-                            <div class="d-flex">
-                                <div class="pricing">
-                                    <p class="price"><span id="productPrice-3">Rs.350.00</span></p>
-                                </div>
-                            </div>
-                            <div class="bottom-area d-flex px-3">
-                                <div class="m-auto d-flex">
-                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                        <span><i class="ion-ios-menu"></i></span>
-                                    </a>
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                        <span><i class="ion-ios-cart"></i></span>
-                                    </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                        <span><i class="ion-ios-heart"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="product">
-                        <a href="product-single.html" class="img-prod"><img id="product-4" class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template">
-                            <div class="overlay"></div>
-                        </a>
-                        <div class="text py-3 pb-4 px-3 text-center">
-                            <h3 id="productName-4"><a href="#">Fruit Cake</a></h3>
-                            <div class="d-flex">
-                                <div class="pricing">
-                                    <p class="price"><span id="productPrice-4">Rs.340.00</span></p>
-                                </div>
-                            </div>
-                            <div class="bottom-area d-flex px-3">
-                                <div class="m-auto d-flex">
-                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                        <span><i class="ion-ios-menu"></i></span>
-                                    </a>
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                        <span><i class="ion-ios-cart"></i></span>
-                                    </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                        <span><i class="ion-ios-heart"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        //$conn = mysqli_init();tr
+                    /*
+                    try{
 
 
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="product">
-                        <a href="product-single.html" class="img-prod"><img id="product-5" class="img-fluid"  height="00" width="800" src="images/product-5.jpg" alt="Colorlib Template">
-                            <span class="status">30%</span>
-                            <div class="overlay"></div>
-                        </a>
-                        <div class="text py-3 pb-4 px-3 text-center">
-                            <h3 id="productName-5"<a href="#">Cup Cake</a></h3>
-                            <div class="d-flex">
-                                <div class="pricing">
-                                    <p class="price"><!-- <span class="mr-2 price-dc">Rs.80.00</span> -->
-                                        <span id="productPrice-5" class="price-sale">Rs.60.00</span></p>
-                                </div>
-                            </div>
-                            <div class="bottom-area d-flex px-3">
-                                <div class="m-auto d-flex">
-                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                        <span><i class="ion-ios-menu"></i></span>
-                                    </a>
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                        <span><i class="ion-ios-cart"></i></span>
-                                    </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                        <span><i class="ion-ios-heart"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="product">
-                        <a href="product-single.html" class="img-prod"><img id="product-6" class="img-fluid" src="images/product-6.jpg" alt="Colorlib Template">
-                            <div class="overlay"></div>
-                        </a>
-                        <div class="text py-3 pb-4 px-3 text-center">
-                            <h3 id="productName-6"><a href="#">Dark Chocolate</a></h3>
-                            <div class="d-flex">
-                                <div class="pricing">
-                                    <p class="price"><span id="productPrice-6">Rs.420.00</span></p>
-                                </div>
-                            </div>
-                            <div class="bottom-area d-flex px-3">
-                                <div class="m-auto d-flex">
-                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                        <span><i class="ion-ios-menu"></i></span>
-                                    </a>
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                        <span><i class="ion-ios-cart"></i></span>
-                                    </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                        <span><i class="ion-ios-heart"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="product">
-                        <a href="product-single.html" class="img-prod"><img id="product-7" class="img-fluid" src="images/product-7.jpg" alt="Colorlib Template">
-                            <div class="overlay"></div>
-                        </a>
-                        <div class="text py-3 pb-4 px-3 text-center">
-                            <h3 id="productName-7"><a href="#">Mix Fruit Cake</a></h3>
-                            <div class="d-flex">
-                                <div class="pricing">
-                                    <p class="price"><span id="productPrice-7">Rs.260.00</span></p>
-                                </div>
-                            </div>
-                            <div class="bottom-area d-flex px-3">
-                                <div class="m-auto d-flex">
-                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                        <span><i class="ion-ios-menu"></i></span>
-                                    </a>
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                        <span><i class="ion-ios-cart"></i></span>
-                                    </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                        <span><i class="ion-ios-heart"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="product">
-                        <a href="product-single.html" class="img-prod"><img id="product-8" class="img-fluid" src="images/product-8.jpg" alt="Colorlib Template">
-                            <div class="overlay"></div>
-                        </a>
-                        <div class="text py-3 pb-4 px-3 text-center">
-                            <h3 id="productName-8"><a href="#">Mango Cheese Cake</a></h3>
-                            <div class="d-flex">
-                                <div class="pricing">
-                                    <p class="price"><span id="productPrice-8">Rs.450.00</span></p>
-                                </div>
-                            </div>
-                            <div class="bottom-area d-flex px-3">
-                                <div class="m-auto d-flex">
-                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                        <span><i class="ion-ios-menu"></i></span>
-                                    </a>
-                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                        <span><i class="ion-ios-cart"></i></span>
-                                    </a>
-                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                        <span><i class="ion-ios-heart"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                       $connectionInfo = array("UID" => "AlbinoCakeWesite@cakewebsitedb", "pwd" => "ACWdb#321", "Database" => "CakeDB", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+                    
+                        $serverName = "tcp:cakewebsitedb.database.windows.net,1433";
+                        $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="product-single.html" class="img-prod"><img id="product-9" class="img-fluid" src="images/product-9.jpg" alt="Colorlib Template">
-    						<span class="status">30%</span>
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3 id="productName-9"><a href="#">Strawbery Cheese Cake</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						 <p class="price"> <!--<span class="mr-2 price-dc">Rs.430.00</span> -->
-                                        <span id="productPrice-9" class="price-sale">Rs.400.00</span></p>
-		    					</div>
-	    					</div>
-	    					<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="product-single.html" class="img-prod"><img id="product-10" class="img-fluid" src="images/product-10.jpg" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3 id="productName-10"><a href="#">New Fruit Cake</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span id="productPrice-10">Rs.250.00</span></p>
-		    					</div>
-	    					</div>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="product-single.html" class="img-prod"><img id="product-11" class="img-fluid" src="images/product-11.jpg" alt="Colorlib Template">
-	    					<div class="overlay"></div>
-	    				</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3 id="productName-11"><a href="#">Just Chocolate Cake</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span id="productPrice-11">Rs.290.00</span></p>
-		    					</div>
-	    					</div>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-    					<a href="product-single.html" class="img-prod"><img id="product-12" class="img-fluid" src="images/product-12.jpg" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3 id="productName-12"><a href="#">Vanilla Cupcake</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span id="productPrice-12">Rs.40.00</span></p>
-		    					</div>
-	    					</div>
-    						<div class="bottom-area d-flex px-3">
-	    						<div class="m-auto d-flex">
-	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-	    								<span><i class="ion-ios-menu"></i></span>
-	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
-	    								<span><i class="ion-ios-heart"></i></span>
-	    							</a>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
+                         if ($conn == FALSE)
+                                echo (sqlsrv_errors());
+
+                    }
+catch (Exception $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+*/
+/*
+$conn=mysqli_connect("cakewebsitedb.database.windows.net","AlbinoCakeWesite","ACWdb#321","CakeDB",1433);
+echo mysqli_error();
+if(!$conn)
+{
+    echo "asadsdas";
+}
+
+*/
+
+try {
+    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+
+$sql = "SELECT cakeName,cakeId,cakePrice FROM Cake";
+$result=$conn->query($sql);
+$result->setFetchMode(PDO::FETCH_ASSOC);
+while ($row = $result->fetch()) {
+    
+                                             
+                                             echo '   <div class="col-md-6 col-lg-3 ftco-animate">
+                                                    <div class="product">
+                                                        <a href="product-single.html" class="img-prod"><img id="product-1" class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
+                                                            <span class="status">30%</span>
+                                                            <div class="overlay"></div>
+                                                        </a>
+                                                        <div class="text py-3 pb-4 px-3 text-center">
+                                                            <h3 id="'.$row['cakeId'].'"><a href="#">'.$row['cakeName'].'</a></h3>
+                                                            <div class="d-flex">
+                                                                <div class="pricing">
+                                                                    <p class="price"><!-- <span class="mr-2 price-dc">Rs.220.00</span> -->
+                                                                        <span id="productPrice'.$row['cakeId'].'" class="price-sale">'.$row['cakePrice'].'</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bottom-area d-flex px-3">
+                                                                <div class="m-auto d-flex">
+                                                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                                        <span><i class="ion-ios-menu"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                                        <span><i class="ion-ios-cart"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                                        <span><i class="ion-ios-heart"></i></span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        ';
+                                        //var_dump($row);
+                                        }
+                                
+
+
+                        //Close the connectio
+                        //nmysqli_close($conn);
+
+                    ?>
+                
     	<!-- 	<div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
@@ -399,7 +142,12 @@
         
         $(document).ready(function(){
                 $("#ChocolateView").click(function(){
-                  
+
+                
+
+
+
+
 
               $("#product-1").attr('src','images/1Chocolate_chocblackoutcake.jpg');
                $("#product-2").attr('src','images/2Chocolate_chocraspberrycake.jpg');
