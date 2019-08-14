@@ -33,29 +33,42 @@
 						    </thead>
 						    <tbody>
 
-						    	<?php 
+						    		<?php 
+
+                                               try {
+    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
 
 
-									$cakes = array("BlackForest", "Dark Chocolate", "Stawberry Cheese Cake");
 
-									for($i=0;$i<count($cakes);$i++)
+                                        $sql = "select categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,Cart,Customer,Category where cakeId=fkcakeIdCart and customerId=fkcustomerIdCart and customerName='Albino Braganza' and categoryId=fkcategoryIdCake";
+                                        $result=$conn->query($sql);
+                                        $result->setFetchMode(PDO::FETCH_ASSOC);
+                                        while ($row = $result->fetch())   
 									{
 							    	
 
 									    echo '	<tr class="text-center">
 										        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 										        
-										        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
+										        <td class="image-prod"><div class="img" style="background-image:url(images/'.$row['categoryId'].'_'.$row['cakeId'].'.jpg);"></div></td>
 										        
 										        <td class="product-name">
-										        	<h3>'.$cakes[$i].'</h3>
+										        	<h3>'.$row['cakeName'].'</h3>
 										        	<p>Far far away, behind the word mountains, far from the countries</p>
 										        </td>
 										        
-										        <td class="price">$4.90</td>
+										        <td class="price">'.$row['basePrice'].'</td>
 
 							                    <td class="Size">
 							                      <select name="size">
+
+    												<option selected="selected" value="'.$row['cakeSize'].'">'.$row['cakeSize'].'</option>
 							                        <option class="dropdown-item" value="Small">Small(1 KG)</option>
 							                        <option class="dropdown-item" value="Medium">Medium(1.5 KG)</option>
 							                        <option class="dropdown-item" value="Large">Large(2 KG)</option>
@@ -65,10 +78,10 @@
 										        
 										        <td class="quantity">
 										        	<div class="input-group mb-3">
-									             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+									             	<input type="text" name="quantity" class="quantity form-control input-number" value="'.$row['quantity'].'" min="1" max="100">
 									          	</div>
 									          	</td>
-									        	<td class="total">$4.90</td>
+									        	<td class="total">'.$row['TotalPrice'].'</td>
 
 									     		 </tr><!-- END TR-->
 								      		';
@@ -76,36 +89,9 @@
 
 						    	?>
 						      
+						      
 
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url(images/product-4.jpg);"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>Bell Pepper</h3>
-						        	<p>Far far away, behind the word mountains, far from the countries</p>
-						        </td>
-						        
-						        <td class="price">$15.70</td>
-
-                    <td class="Size">
-                      <select name="size">
-                        <option class="dropdown-item" value="Small">Small(1 KG)</option>
-                        <option class="dropdown-item" value="Medium">Medium(1.5 KG)</option>
-                        <option class="dropdown-item" value="Large">Large(2 KG)</option>
-                      </select>
-                  
-                    </td><!-- drop down added -->
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">$15.70</td>
-						      </tr><!-- END TR-->
+						      
 						    </tbody>
 						  </table>
 					  </div>
