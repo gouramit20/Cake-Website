@@ -100,7 +100,7 @@ catch (PDOException $e) {
                                         while ($row = $result->fetch()) {               
                                               echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
                                                     <div class="product">
-                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
+                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeCategory='.$row['fkcategoryIdCake'].'&cakeId='.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
                                                             <span class="status">30%</span>
                                                             <div class="overlay"></div>
                                                         </a>
@@ -155,7 +155,7 @@ catch (PDOException $e) {
                                              
                                              echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
                                                     <div class="product">
-                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
+                                                         <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeCategory='.$row['fkcategoryIdCake'].'&cakeId='.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
                                                             <span class="status">30%</span>
                                                             <div class="overlay"></div>
                                                         </a>
@@ -213,7 +213,7 @@ catch (PDOException $e) {
                                         while ($row = $result->fetch()) {               
                                            echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
                                                     <div class="product">
-                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
+                                                         <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeCategory='.$row['fkcategoryIdCake'].'&cakeId='.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
                                                             <span class="status">30%</span>
                                                             <div class="overlay"></div>
                                                         </a>
@@ -267,7 +267,7 @@ catch (PDOException $e) {
                                              
                                              echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
                                                     <div class="product">
-                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
+                                                         <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeCategory='.$row['fkcategoryIdCake'].'&cakeId='.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
                                                             <span class="status">30%</span>
                                                             <div class="overlay"></div>
                                                         </a>
@@ -321,7 +321,7 @@ catch (PDOException $e) {
                                              
                                            echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
                                                     <div class="product">
-                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
+                                                         <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeCategory='.$row['fkcategoryIdCake'].'&cakeId='.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
                                                             <span class="status">30%</span>
                                                             <div class="overlay"></div>
                                                         </a>

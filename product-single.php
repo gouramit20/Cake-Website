@@ -21,7 +21,7 @@
     			if(!empty($_GET['cakeName'])&&!empty($_GET['cakeId'])&&!empty($_GET['cakePrice'])){
     			echo '
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="images/product-1.jpg" class="image-popup"><img src="images/'.$_GET['cakeId'].'.jpg" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="images/product-1.jpg" class="image-popup"><img src="images/'.$_GET['cakeCategory'].'_'.$_GET['cakeId'].'.jpg" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h3>'.$_GET['cakeName'].'</h3>
@@ -49,11 +49,10 @@
 								<div class="form-group d-flex">
 		              <div class="select-wrap">
 	                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                  <select name="" id="" class="form-control">
-	                  	<option value="">Small</option>
-	                    <option value="">Medium</option>
-	                    <option value="">Large</option>
-	                    <option value="">Extra Large</option>
+	                  <select name="" id="selectedSizee" class="form-control">
+	                  	<option value="Small">Small</option>
+	                    <option value="Medium">Medium</option>
+	                    <option value="Large">Large</option>
 	                  </select>
 	                </div>
 		            </div>
@@ -65,7 +64,7 @@
 	                   <i class="ion-ios-remove"></i>
 	                	</button>
 	            		</span>
-	             	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="2" max="100">
+	             	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="3" min="2" max="100">
 	             	<span class="input-group-btn ml-2">
 	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 	                     <i class="ion-ios-add"></i>
@@ -77,14 +76,18 @@
 	          		<p style="color: #000;">600 kg available</p>
 	          	</div>
           	</div>
-          	<p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+          	<p><a href="cart.php?cakeSize=<script >
+          	  	document.write(document.getElementById(selectedSizee).value);
+          		</script>&quantity=<script >
+          	  	document.write(document.getElementById(quantity).value);
+          	</script>&cakeId='.$_GET["cakeId"].'&currentUserId=10001" class="btn btn-black py-3 px-5">Add to Cart</a></p>
     			</div>
     			';
     		}
 
 
-    			?>
-
+    			
+echo '
     		</div>
     	</div>
     </section>
@@ -220,8 +223,9 @@
 
 
 
+';
 
-
+?>
 
 
 <?php include 'footer.php';?>
@@ -245,7 +249,7 @@
   <script>
 		$(document).ready(function(){
 
-		var quantitiy=0;
+		var quantity=0;
 		   $('.quantity-right-plus').click(function(e){
 		        
 		        // Stop acting like a button
