@@ -1,6 +1,11 @@
 
 
-<?php include 'header.php';?>
+<?php 
+
+
+include 'header.php';
+
+?>
 
  <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
       <div class="container">
@@ -17,17 +22,32 @@
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li id="AllView"><a href="#" class="active">All</a></li>
-    					<li id="ChocolateView"><a href="#" >Chocolate</a></li>
-    					<li id="CheeseView"><a href="#">Cheese</a></li>
-    					<li id="FruitView"><a href="#">Fruit</a></li>
-    					<li id="CupcakeView"><a href="#">Cupcake</a></li>
+    					<li id="AllView"><a href="shop.php?category=all" class="active" >All</a></li>
+    					<li id="ChocolateView"><a href="shop.php?category=chocolate" >Chocolate</a></li>
+    					<li id="CheeseView" ><a href="shop.php?category=cheese">Cheese</a></li>
+    					<li id="FruitView" ><a href="shop.php?category=fruit">Fruit</a></li>
+    					<li id="CupcakeView" ><a href="shop.php?category=cupcake">Cupcake</a></li>
     				</ul>
     			</div>
     		</div>
     		<div class="row">
                     <?php 
-                       
+
+                    if($_GET['category']=='all'){
+                        all();
+                    }
+                     if($_GET['category']=='chocolate'){
+                        chocolate();
+                    }
+                    if($_GET['category']=='cheese'){
+                        cheese();
+                    }
+                    if($_GET['category']=='fruit'){
+                        fruit();
+                    }  
+                    if($_GET['category']=='cupcake'){
+                        cupcake();
+                    }  
 
                         //$conn = mysqli_init();tr
                     /*
@@ -58,7 +78,11 @@ if(!$conn)
 
 */
 
-try {
+     //all();                  
+ 
+
+                    function all(){
+                        try {
     $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
@@ -68,15 +92,15 @@ catch (PDOException $e) {
 }
 
 
-$sql = "SELECT cakeName,cakeId,cakePrice FROM Cake";
-$result=$conn->query($sql);
-$result->setFetchMode(PDO::FETCH_ASSOC);
-while ($row = $result->fetch()) {
-    
-                                             
-                                             echo '   <div class="col-md-6 col-lg-3 ftco-animate">
+
+                                        //delete('deleteIfNeeded');
+                                        $sql = "SELECT fkcategoryIdCake,cakeName,cakeId,cakePrice FROM Cake";
+                                        $result=$conn->query($sql);
+                                        $result->setFetchMode(PDO::FETCH_ASSOC);
+                                        while ($row = $result->fetch()) {               
+                                              echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
                                                     <div class="product">
-                                                        <a href="product-single.html" class="img-prod"><img id="product-1" class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
+                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
                                                             <span class="status">30%</span>
                                                             <div class="overlay"></div>
                                                         </a>
@@ -107,8 +131,230 @@ while ($row = $result->fetch()) {
                                         ';
                                         //var_dump($row);
                                         }
+
+
+                                    }
+                     function chocolate(){
+                           try {
+    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+
+
+
+                                        $sql = "SELECT fkcategoryIdCake,cakeName,cakeId,cakePrice FROM Cake where fkcategoryIdCake=1";
+                                        $result=$conn->query($sql);
+                                        $result->setFetchMode(PDO::FETCH_ASSOC);
+                                        while ($row = $result->fetch()) {       
+    
+                                             
+                                             echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
+                                                    <div class="product">
+                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
+                                                            <span class="status">30%</span>
+                                                            <div class="overlay"></div>
+                                                        </a>
+                                                        <div class="text py-3 pb-4 px-3 text-center">
+                                                            <h3 id="'.$row['cakeId'].'"><a href="#">'.$row['cakeName'].'</a></h3>
+                                                            <div class="d-flex">
+                                                                <div class="pricing">
+                                                                    <p class="price"><!-- <span class="mr-2 price-dc">Rs.220.00</span> -->
+                                                                        <span id="productPrice'.$row['cakeId'].'" class="price-sale">'.$row['cakePrice'].'</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bottom-area d-flex px-3">
+                                                                <div class="m-auto d-flex">
+                                                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                                        <span><i class="ion-ios-menu"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                                        <span><i class="ion-ios-cart"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                                        <span><i class="ion-ios-heart"></i></span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        ';
+                                        //var_dump($row);
+                                        }
+
+                                        
+
+                                    }
                                 
 
+                                
+
+
+                    function fruit(){
+                                                   try {
+    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+
+
+                                        $sql = "SELECT fkcategoryIdCake,cakeName,cakeId,cakePrice FROM Cake where fkcategoryIdCake=2";
+                                        $result=$conn->query($sql);
+                                        $result->setFetchMode(PDO::FETCH_ASSOC);
+                                        while ($row = $result->fetch()) {               
+                                           echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
+                                                    <div class="product">
+                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
+                                                            <span class="status">30%</span>
+                                                            <div class="overlay"></div>
+                                                        </a>
+                                                        <div class="text py-3 pb-4 px-3 text-center">
+                                                            <h3 id="'.$row['cakeId'].'"><a href="#">'.$row['cakeName'].'</a></h3>
+                                                            <div class="d-flex">
+                                                                <div class="pricing">
+                                                                    <p class="price"><!-- <span class="mr-2 price-dc">Rs.220.00</span> -->
+                                                                        <span id="productPrice'.$row['cakeId'].'" class="price-sale">'.$row['cakePrice'].'</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bottom-area d-flex px-3">
+                                                                <div class="m-auto d-flex">
+                                                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                                        <span><i class="ion-ios-menu"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                                        <span><i class="ion-ios-cart"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                                        <span><i class="ion-ios-heart"></i></span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        ';
+                                        //var_dump($row);
+                                        }
+
+                                    }
+
+
+                    function cheese(){
+                                                   try {
+    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+
+
+                                        $sql = "SELECT fkcategoryIdCake,cakeName,cakeId,cakePrice FROM Cake where fkcategoryIdCake=3";
+                                        $result=$conn->query($sql);
+                                        $result->setFetchMode(PDO::FETCH_ASSOC);
+                                        while ($row = $result->fetch()) {               
+                                             
+                                             echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
+                                                    <div class="product">
+                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
+                                                            <span class="status">30%</span>
+                                                            <div class="overlay"></div>
+                                                        </a>
+                                                        <div class="text py-3 pb-4 px-3 text-center">
+                                                            <h3 id="'.$row['cakeId'].'"><a href="#">'.$row['cakeName'].'</a></h3>
+                                                            <div class="d-flex">
+                                                                <div class="pricing">
+                                                                    <p class="price"><!-- <span class="mr-2 price-dc">Rs.220.00</span> -->
+                                                                        <span id="productPrice'.$row['cakeId'].'" class="price-sale">'.$row['cakePrice'].'</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bottom-area d-flex px-3">
+                                                                <div class="m-auto d-flex">
+                                                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                                        <span><i class="ion-ios-menu"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                                        <span><i class="ion-ios-cart"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                                        <span><i class="ion-ios-heart"></i></span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        ';
+                                        //var_dump($row);
+                                        }
+
+                                    }
+
+
+                    function cupcake(){
+                                                   try {
+    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+
+
+                                        $sql = "SELECT fkcategoryIdCake,cakeName,cakeId,cakePrice FROM Cake where fkcategoryIdCake=4";
+                                        $result=$conn->query($sql);
+                                        $result->setFetchMode(PDO::FETCH_ASSOC);
+                                        while ($row = $result->fetch()) {               
+                                             
+                                           echo '   <div class="col-md-6 col-lg-3 ftco-animate" id="deleteIfNeeded">
+                                                    <div class="product">
+                                                        <a href="product-single.php?cakeName='.$row['cakeName'].'&cakeId='.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'&cakePrice='.$row['cakePrice'].'" class="img-prod"><img id="product-1" class="img-fluid" src="images/'.$row['fkcategoryIdCake'].'_'.$row['cakeId'].'.jpg" alt="Colorlib Template">
+                                                            <span class="status">30%</span>
+                                                            <div class="overlay"></div>
+                                                        </a>
+                                                        <div class="text py-3 pb-4 px-3 text-center">
+                                                            <h3 id="'.$row['cakeId'].'"><a href="#">'.$row['cakeName'].'</a></h3>
+                                                            <div class="d-flex">
+                                                                <div class="pricing">
+                                                                    <p class="price"><!-- <span class="mr-2 price-dc">Rs.220.00</span> -->
+                                                                        <span id="productPrice'.$row['cakeId'].'" class="price-sale">'.$row['cakePrice'].'</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bottom-area d-flex px-3">
+                                                                <div class="m-auto d-flex">
+                                                                    <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                                        <span><i class="ion-ios-menu"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                                        <span><i class="ion-ios-cart"></i></span>
+                                                                    </a>
+                                                                    <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                                                        <span><i class="ion-ios-heart"></i></span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        ';
+                                        //var_dump($row);
+                                        }
+
+                                    }
+                                       // $conn->close();
 
                         //Close the connectio
                         //nmysqli_close($conn);
@@ -136,57 +382,18 @@ while ($row = $result->fetch()) {
 
 <?php include 'footer.php';?>
 
-
+<!-- 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
         
         $(document).ready(function(){
-                $("#ChocolateView").click(function(){
+                $("#AllView").click(function(){
+                    'shop.php'
 
+
+                    <?php
+                    ?>
                 
-
-
-
-
-
-              $("#product-1").attr('src','images/1Chocolate_chocblackoutcake.jpg');
-               $("#product-2").attr('src','images/2Chocolate_chocraspberrycake.jpg');
-                $("#product-3").attr('src','images/3Chocolate_choccoconutcake.jpg');
-                 $("#product-4").attr('src','images/4Chocolate_mochafudgecake.jpg');
-                  $("#product-5").attr('src','images/5Chocolate_chocoreocake.jpg');
-                   $("#product-6").attr('src','images/6Chocolate_blackforestcake.jpg');
-                    $("#product-7").attr('src','images/7Chocolate_germanchoccake.jpg');
-                     $("#product-8").attr('src','images/8Chocolate_chochazelnutlayercake.jpg');
-                      $("#product-9").attr('src','images/9Chocolate_chocomintcake.jpg');
-                       $("#product-10").attr('src','images/10Chocolate_chocofudgecake.jpg');
-                        $("#product-11").attr('src','images/11Chocolate_darkchocolatecake.jpg');
-                         $("#product-12").attr('src','images/12Chocolate_chocolatetruffleheartshapecake.jpg');
-
-                         $("#productName-1").text("Chocblackout Cake");
-                           $("#productName-2").text("Chocraspberry Cake");
-                             $("#productName-3").text("Choccoconut Cake");
-                               $("#productName-4").text("Mochafudge Cake");
-                                 $("#productName-5").text("Chocoreo Cake");
-                                   $("#productName-6").text("Blackforest Cake");
-                                     $("#productName-7").text("Germanchoc Cake");
-                                       $("#productName-8").text("Chochazelnut Layer Cake");
-                                         $("#productName-9").text("Chocomint Cake");
-                                           $("#productName-10").text("Chocofudge Cake");
-                                             $("#productName-11").text("Dark Chocolate Cake");
-                                               $("#productName-12").text("Chocolate Truffleheart Shape Cake");
-
-                                                 $("#productPrice-1").text("Rs.200.00");
-                                                  $("#productPrice-2").text("Rs.200.00");
-                                                   $("#productPrice-3").text("Rs.200.00");
-                                                    $("#productPrice-4").text("Rs.200.00");
-                                                     $("#productPrice-5").text("Rs.200.00");
-                                                      $("#productPrice-6").text("Rs.200.00");
-                                                       $("#productPrice-7").text("Rs.200.00");
-                                                        $("#productPrice-8").text("Rs.200.00");
-                                                         $("#productPrice-9").text("Rs.200.00");
-                                                          $("#productPrice-10").text("Rs.200.00");
-                                                           $("#productPrice-11").text("Rs.200.00");
-                                                            $("#productPrice-12").text("Rs.200.00");
 
               });
         });
@@ -333,5 +540,5 @@ while ($row = $result->fetch()) {
                 });
         });
     </script>
-	</body>
+ -->	</body>
 </html>
