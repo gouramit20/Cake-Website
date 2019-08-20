@@ -5,22 +5,19 @@
 
 <html lang="en">
   <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+ <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
   	<style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
 
 /* Set a style for all buttons */
 button {
@@ -37,14 +34,14 @@ button:hover {
   opacity: 0.8;
 }
 
-/* Extra styles for the cancel button */
+/* Extra styles for the cancel button 
 .cancelbtn {
   width: auto;
   padding: 10px 18px;
   background-color: #f44336;
 }
 
-/* Center the image and position the close button */
+/* Center the image and position the close button 
 .imgcontainer {
   text-align: center;
   margin: 24px 0 12px 0;
@@ -94,7 +91,7 @@ span.psw {
   right: 25px;
   top: 0;
   color: #000;
-  font-size: 35px;
+  font-size: 3.5rem;
   font-weight: bold;
 }
 
@@ -130,6 +127,59 @@ span.psw {
      width: 100%;
   }
 }
+
+
+ .input-group {
+                    margin-top:30px;
+         }
+         .input-group-addon
+         {
+             background:#fff;
+             border:none;
+             
+         }
+         .form-control {
+                        border:none;
+                        box-shadow:none;
+                        border-radius:0px;
+                        
+          
+         }
+         .textboxes{border:none; margin-left: 20px; border-bottom: 1px solid #4db8ff;width:90%;}
+         .textboxes:focus{
+                           border-bottom:1px  solid #005c99;
+                            outline:none;
+                            box-shadow:none;    
+                            
+         }
+         .btn1 {
+                  color:white;
+                  font-size: 16px;
+                  font-weight: bold;
+                  background:linear-gradient(to right,#4db8ff ,#005c99);
+                  border-radius: 3px;
+                  border: none;
+                  min-width: 140px;
+                  outline: none !important;
+                  width:95%;
+                  height:35px;
+                  margin-left:10px;
+                  margin-bottom: 50px;
+         }
+        .btn1:hover {
+                    background-color:#009973;        
+             }
+         .nav-tabs > li > a {
+             color: black;
+             font-size: 20px;
+         }
+         .errormsg {
+         
+           
+             color:red;
+            
+
+         }
 </style>
 
 
@@ -214,7 +264,7 @@ span.psw {
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 	          <li class="nav-item"> 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button></a></li>
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Login</button></a></li>
 
 	        </ul>
 	      </div>
@@ -226,29 +276,83 @@ span.psw {
 	  </nav>
 	  <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="/action_page.php">
+  <form class="modal-content animate" style="width: 50%" action="/action_page.php">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+      <span onclick="document.getElementById('id01').style.display='none'" style="font-size: 30px;line-height: 2" class="close" title="Close Modal">&times;</span>
+    
     </div>
 
     <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+    
+ <ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#home">Login</a></li>
+    <li><a data-toggle="pill" href="#menu1">Signup</a></li>
+    
+  </ul>
+  
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      
+      <div class="input-group" style="margin-top: 100px;">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+            <input type="text" placeholder="Enter Your username" class=" textboxes"/>   
+                           <div id="passerror" class="errormsg"></div>
+                  </div>
+                  <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-key"></i></span>
+            <input type="text"  name="txtlogname" placeholder="Enter Your password" class=" textboxes"/>   
+               <div id="passerror" class="errormsg"></div>
+                  </div>
+                  <div class="input-group">
+                
+           <input type="submit" name="logbtn" value="LOGIN" class="btn1"/>   
+                        
+                  </div>
+      
+      
+      
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      
+       <div class="input-group" style="margin-top: 50px;">
+                <span class="input-group-addon"><i class="fas fa-user"></i></span>
+            <input type="text" placeholder="Enter Your Name" class=" textboxes"/>   
+                           <div id="passerror" class="errormsg"></div>
+                  </div>
+                  <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-key"></i></span>
+            <input type="text"  name="txtlogname" placeholder="Enter Your Email" class=" textboxes"/>   
+               <div id="passerror" class="errormsg"></div>
+                  </div>
+                  <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-key"></i></span>
+            <input type="text"  name="txtlogname" placeholder="Enter Your Number" class=" textboxes"/>   
+               <div id="passerror" class="errormsg"></div>
+                  </div>
+                  <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-key"></i></span>
+            <input type="text"  name="txtlogname" placeholder="Enter Your password" class=" textboxes"/>   
+               <div id="passerror" class="errormsg"></div>
+                  </div>
+                  <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-key"></i></span>
+            <input type="text"  name="txtlogname" placeholder="Enter Your Comfirm password" class=" textboxes"/>   
+               <div id="passerror" class="errormsg"></div>
+                  </div>
+                  <div class="input-group">
+                
+           <input type="submit" name="logbtn" value="SIGNUP" class="btn1"/>   
+                        
+                  </div>
+    
+    </div>
+    
+    
+  </div>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
+   
   </form>
 </div>
 
