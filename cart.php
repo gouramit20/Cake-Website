@@ -2,8 +2,8 @@
 <?php 
 
 //save add to cart
-                                          try {
-    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+try {
+   $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {
@@ -11,12 +11,20 @@ catch (PDOException $e) {
     die(print_r($e));
 }
 
+if(isset($_POST['selectedSize'])&&isset($_POST['quantity'])){
+                                          
 
 
-                                        $sql = "INSERT into Cart VALUES('".$_POST['selectedSize']."',".$_POST['quantity'].",".$_GET['currentUserId'].",".$_GET['cakeId'].")";
-                                        $result=$conn->query($sql);
+             $sql = "INSERT into Cart VALUES('".$_POST['selectedSize']."',".$_POST['quantity'].",".$_POST['currentUserId'].",".$_POST['cakeId'].")";
+             $result=$conn->query($sql);
 
+}
 
+if(isset($_POST['deleteCake']))
+{
+				 $sql = "DELETE from Cart where fkcakeIdCart=".$_POST['deleteCake']."and fkcustomerIdCart=10001";
+                 $result=$conn->query($sql);
+}
 
 include 'header.php';
 
@@ -56,14 +64,7 @@ include 'header.php';
 
 						    		<?php 
 
-                                               try {
-    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
+                
 
 
 
@@ -76,7 +77,13 @@ catch (PDOException $e) {
 							    	
 										$total+=$row['TotalPrice'];
 									    echo '	<tr class="text-center">
-										        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+										        <td >
+										        <form action="" method="POST">
+										        <input type="hidden" name="deleteCake" value="'.$row['cakeId'].'">
+										        <input type="submit" value="Remove" >
+										        
+										        </form>
+										        </td>
 										        
 										        <td class="image-prod"><div class="img" style="background-image:url(images/'.$row['categoryId'].'_'.$row['cakeId'].'.jpg);"></div></td>
 										        
