@@ -1,5 +1,26 @@
 
-<?php include 'header.php';?>
+<?php 
+
+//save add to cart
+                                          try {
+    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+
+
+                                        $sql = "INSERT into Cart VALUES('".$_POST['selectedSize']."',".$_POST['quantity'].",".$_GET['currentUserId'].",".$_GET['cakeId'].")";
+                                        $result=$conn->query($sql);
+
+
+
+include 'header.php';
+
+?>
 
 
 
@@ -49,10 +70,11 @@ catch (PDOException $e) {
                                         $sql = "select categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,Cart,Customer,Category where cakeId=fkcakeIdCart and customerId=fkcustomerIdCart and customerName='Albino Braganza' and categoryId=fkcategoryIdCake";
                                         $result=$conn->query($sql);
                                         $result->setFetchMode(PDO::FETCH_ASSOC);
+                                        $total=0;
                                         while ($row = $result->fetch())   
 									{
 							    	
-
+										$total+=$row['TotalPrice'];
 									    echo '	<tr class="text-center">
 										        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 										        

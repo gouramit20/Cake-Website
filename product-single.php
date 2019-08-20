@@ -20,10 +20,13 @@
     			<?php 
     			if(!empty($_GET['cakeName'])&&!empty($_GET['cakeId'])&&!empty($_GET['cakePrice'])){
     			echo '
+    			
     			<div class="col-lg-6 mb-5 ftco-animate">
+
     				<a href="images/product-1.jpg" class="image-popup"><img src="images/'.$_GET['cakeCategory'].'_'.$_GET['cakeId'].'.jpg" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+    			<form name="saveCake" action="cart.php?currentUserId=10001&cakeId='.$_GET['cakeId'].'" method="POST">
     				<h3>'.$_GET['cakeName'].'</h3>
     				<div class="rating d-flex">
 							<p class="text-left mr-4">
@@ -49,7 +52,7 @@
 								<div class="form-group d-flex">
 		              <div class="select-wrap">
 	                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                  <select name="" id="selectedSizee" class="form-control">
+	                  <select name="selectedSize" class="form-control">
 	                  	<option value="Small">Small</option>
 	                    <option value="Medium">Medium</option>
 	                    <option value="Large">Large</option>
@@ -75,14 +78,14 @@
 	          	<div class="col-md-12">
 	          		<p style="color: #000;">600 kg available</p>
 	          	</div>
-          	</div>
-          	<p><a href="cart.php?cakeSize=<script >
-          	  	document.write(document.getElementById(selectedSizee).value);
-          		</script>&quantity=<script >
-          	  	document.write(document.getElementById(quantity).value);
-          	</script>&cakeId='.$_GET["cakeId"].'&currentUserId=10001" class="btn btn-black py-3 px-5">Add to Cart</a></p>
-    			</div>
-    			';
+          	</div>';?>
+
+          	<?php echo '<p><input type="submit" value="Add to Cart" class="btn btn-black py-3 px-5"></p>
+
+          	</form>
+    			</div>' ;
+    			
+    			
     		}
 
 
@@ -283,5 +286,8 @@ echo '
 		});
 	</script>
 
+
+
       </body>
 </html>
+
