@@ -1,5 +1,42 @@
 
-<?php include 'header.php';?>
+<?php 
+
+if(isset($_POST['paid']))
+{
+	try {
+   $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+   $sql = "select categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from   Cake,Cart,Customer,Category where cakeId=fkcakeIdCart and 
+   	 	customerId=fkcustomerIdCart and
+   	 	customerName='Albino Braganza' and
+   	 	categoryId=fkcategoryIdCake";
+                                        $result=$conn->query($sql);
+                                        $result->setFetchMode(PDO::FETCH_ASSOC);
+                                        $total=0;
+                                        while ($row = $result->fetch())   
+									{
+
+
+							             $sql = "INSERT into CustomerOrder VALUES(".$row['quantity'].",'".$row['cakeSize']."',10001,".$row['cakeId'].",'".date('Y/m/d')."')";
+							             $conn->query($sql);
+
+
+										 $sql = "DELETE from Cart where fkcakeIdCart=".$row['cakeId']."and fkcustomerIdCart=10001";
+						                 $conn->query($sql);
+
+
+									}
+
+}
+
+
+include 'header.php';?>
 
 
     <section id="home-section" class="hero">
@@ -97,19 +134,19 @@
 									<div class="text text-center">
 										<h2>Cake's</h2>
 										<p>Sweeten your life!</p>
-										<p><a href="shop.html" class="btn btn-primary">Shop now</a></p> 
+										<p><a href="shop.php?category=all" class="btn btn-primary">Shop now</a></p> 
 									</div>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(images/category-1.jpg);">
 									<div class="text px-3 py-1">
-										<h2 class="mb-0"><a href="#">Chocolate Cake</a></h2>
+										<h2 class="mb-0"><a href="shop.php?category=chocolate">Chocolate Cake</a></h2>
 									</div>
 								</div>
 								<div class="category-wrap ftco-animate img d-flex align-items-end"  style="background-image: url(images/category-2.jpg);">
 									<div class="text px-3 py-1">
-										<h2 class="mb-0"><a href="#">Fruit Cake</a></h2>
+										<h2 class="mb-0"><a href="shop.php?category=fruit">Fruit Cake</a></h2>
 									</div>
 								</div>
 							</div>
@@ -119,12 +156,12 @@
 					<div class="col-md-4">
 						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(images/category-3.jpg);">
 							<div class="text px-3 py-1">
-								<h2 class="mb-0"><a href="#">Cheese Cake</a></h2>
+								<h2 class="mb-0"><a href="shop.php?category=cheese">Cheese Cake</a></h2>
 							</div>		
 						</div>
 						<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(images/category-4.jpg);">
 							<div class="text px-3 py-1">
-								<h2 class="mb-0"><a href="#">Cup Cakes</a></h2>
+								<h2 class="mb-0"><a href="shop.php?category=cupcake">Cup Cakes</a></h2>
 							</div>
 						</div>
 					</div>
