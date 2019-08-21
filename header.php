@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 <?php 
 
     try {
@@ -23,7 +22,7 @@ catch (PDOException $e) {
               $cartCount=0;
              }
 ?>
->>>>>>> 847828445a818fe4bfa1de9fed8c7f05f3e32c65
+
 
 <html lang="en">
   <head>
@@ -208,19 +207,10 @@ span.psw {
        
 </style>
 
-<<<<<<< HEAD
-    <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
-=======
-
-
-
-
-
-
 
 
     <title>Cake Factory</title>
->>>>>>> 847828445a818fe4bfa1de9fed8c7f05f3e32c65
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -405,7 +395,6 @@ span.psw {
       </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-<<<<<<< HEAD
       <div class="container">
         <a class="navbar-brand" href="index.html">Vegefoods</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -430,7 +419,7 @@ span.psw {
             <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
             <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
             <li class="nav-item"> 
-=======
+
 	    <div class="container">
 	      <a class="navbar-brand" href="index.php">Cake Factory</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -455,7 +444,6 @@ span.psw {
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[<?php echo ($cartCount); ?>]</a></li>
 	          <li class="nav-item"> 
->>>>>>> 847828445a818fe4bfa1de9fed8c7f05f3e32c65
 <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Login</button></a></li>
 
           </ul>

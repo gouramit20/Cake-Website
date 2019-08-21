@@ -1,7 +1,5 @@
 <?php 
 
-<<<<<<< HEAD
-
 ?>
 
 <html lang="en">
@@ -395,7 +393,7 @@ span.psw {
               <div class="col-md pr-4 d-flex topper align-items-center">
                 <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
                 <span class="text">+ 1235 2355 87</span>
-=======
+
 <?php 
 
 if(isset($_POST['paid']))
@@ -503,7 +501,6 @@ include 'header.php';?>
               <div class="media-body">
                 <h3 class="heading">Superior Quality</h3>
                 <span>Quality Products</span>
->>>>>>> 847828445a818fe4bfa1de9fed8c7f05f3e32c65
               </div>
               <div class="col-md pr-4 d-flex topper align-items-center">
                 <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
@@ -515,11 +512,9 @@ include 'header.php';?>
             </div>
           </div>
         </div>
-<<<<<<< HEAD
       </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-=======
 			</div>
 		</section>
 
@@ -833,7 +828,6 @@ include 'header.php';?>
     </section>
 
     <section class="ftco-section testimony-section">
->>>>>>> 847828445a818fe4bfa1de9fed8c7f05f3e32c65
       <div class="container">
         <a class="navbar-brand" href="index.html">Vegefoods</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
