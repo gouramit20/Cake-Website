@@ -107,38 +107,38 @@
 
 	          	<div class="col-md-12 d-flex mb-5">
 	          		<div class="cart-detail cart-total p-3 p-md-4">
-	          			<h3 class="billing-heading mb-4">Cake Name Size &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;   Quantity &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Price</h3>
-	          			<p class="d-flex">
-		    						<span>Bell Pepper</span>
-		    						<span>Small</span>
-		    						<span>2</span>
-		    						<span>Rs.300.00</span>
+	          			<h3 class="billing-heading mb-4">Cake Name &nbsp;Size &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;   Quantity &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Price</h3>
+
+	          			<?php 
+
+							try {
+							   $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+							    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+							}
+							catch (PDOException $e) {
+							    print("Error connecting to SQL Server.");
+							    die(print_r($e));
+							}
+							 $sql = "select cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,Cart,Customer where cakeId=fkcakeIdCart and customerId=fkcustomerIdCart and customerId=10001 ";
+                                        $result=$conn->query($sql);
+                                        $result->setFetchMode(PDO::FETCH_ASSOC);
+                                        $total=0;
+                                        while ($row = $result->fetch())   
+									{
+										$total+=$row['basePrice']*$row['quantity'];
+                 
+	          				echo '	
+	          					<p class="d-flex">
+		    						<span>'.$row['cakeName'].'</span>
+		    						<span>'.$row['cakeSize'].'</span>
+		    						<span>'.$row['quantity'].'</span>
+		    						<span>Rs.'.$row['basePrice']*$row['quantity'].'</span>
 		    					</p>
-		    					<p class="d-flex">
-		    						<span>Bell Pepper</span>
-		    						<span>Small</span>
-		    						<span>2</span>
-		    						<span>Rs.300.00</span>
-		    					</p>
-		    					<p class="d-flex">
-		    						<span>Bell Pepper</span>
-		    						<span>Small</span>
-		    						<span>2</span>
-		    						<span>Rs.300.00</span>
-		    					</p>
-		    					<p class="d-flex">
-		    						<span>Bell Pepper</span>
-		    						<span>Small</span>
-		    						<span>2</span>
-		    						<span>Rs.300.00</span>
-		    					</p>
-		    					<hr>
-		    					<p class="d-flex total-price">
-		    						<span>Total</span>
-		    						<span></span>
-		    						<span></span>
-		    						<span>Rs.300.00</span>
-		    					</p>
+		    					';
+		    				}
+
+		    			?>
+		    					
 								</div>
 	          	</div>
 
@@ -148,55 +148,34 @@
 	          			<h3 class="billing-heading mb-4">Cart Total</h3>
 	          			<p class="d-flex">
 		    						<span>Subtotal</span>
-		    						<span>$20.60</span>
+		    						<span><?php echo ("Rs.".$total);?></span>
 		    					</p>
 		    					<p class="d-flex">
 		    						<span>Delivery</span>
 		    						<span>$0.00</span>
 		    					</p>
-		    					<p class="d-flex">
-		    						<span>Discount</span>
-		    						<span>$3.00</span>
-		    					</p>
+		    					
 		    					<hr>
 		    					<p class="d-flex total-price">
 		    						<span>Total</span>
-		    						<span>$17.60</span>
+		    						<span><?php echo ("Rs.".$total);?></span>
 		    					</p>
 								</div>
 	          	</div>
 	          	<div class="col-md-12">
 	          		<div class="cart-detail p-3 p-md-4">
-	          			<h3 class="billing-heading mb-4">Payment Method</h3>
+	          			<h3 class="billing-heading mb-4">Payment</h3>
 									<div class="form-group">
 										<div class="col-md-12">
 											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Direct Bank Tranfer</label>
+												<form action="index.php" method="POST">
+													<input type="hidden" name="paid" value="done">
+											   <label><input type="submit" name="btn" value="Order and Pay" class="btn btn-black py-3 px-5"></label>
+											   </form>
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Check Payment</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Paypal</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="checkbox">
-											   <label><input type="checkbox" value="" class="mr-2"> I have read and accept the terms and conditions</label>
-											</div>
-										</div>
-									</div>
-									<p><a href="#"class="btn btn-primary py-3 px-4">Place an order</a></p>
+									
 								</div>
 	          	</div>
 	          </div>

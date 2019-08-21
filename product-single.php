@@ -26,7 +26,7 @@
     				<a href="images/product-1.jpg" class="image-popup"><img src="images/'.$_GET['cakeCategory'].'_'.$_GET['cakeId'].'.jpg" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    			<form name="saveCake" action="cart.php?currentUserId=10001&cakeId='.$_GET['cakeId'].'" method="POST">
+    			<form name="saveCake" action="cart.php" method="POST">
     				<h3>'.$_GET['cakeName'].'</h3>
     				<div class="rating d-flex">
 							<p class="text-left mr-4">
@@ -78,7 +78,11 @@
 	          	<div class="col-md-12">
 	          		<p style="color: #000;">600 kg available</p>
 	          	</div>
-          	</div>';?>
+          	</div>
+          	<input type="hidden" name="currentUserId" value=10001>
+          	<input type="hidden" name="cakeId" value="'.$_GET['cakeId'].'">
+
+          	';?>
 
           	<?php echo '<p><input type="submit" value="Add to Cart" class="btn btn-black py-3 px-5"></p>
 

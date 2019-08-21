@@ -11,20 +11,6 @@ catch (PDOException $e) {
     die(print_r($e));
 }
 
-if(isset($_POST['selectedSize'])&&isset($_POST['quantity'])){
-                                          
-
-
-             $sql = "INSERT into Cart VALUES('".$_POST['selectedSize']."',".$_POST['quantity'].",".$_POST['currentUserId'].",".$_POST['cakeId'].")";
-             $result=$conn->query($sql);
-
-}
-
-if(isset($_POST['deleteCake']))
-{
-				 $sql = "DELETE from Cart where fkcakeIdCart=".$_POST['deleteCake']."and fkcustomerIdCart=10001";
-                 $result=$conn->query($sql);
-}
 
 include 'header.php';
 
@@ -37,7 +23,7 @@ include 'header.php';
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
           	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
-            <h1 class="mb-0 bread">My Cart</h1>
+            <h1 class="mb-0 bread">My Orders</h1>
           </div>
         </div>
       </div>
@@ -51,7 +37,8 @@ include 'header.php';
 	    				<table class="table">
 						    <thead class="thead-primary">
 						      <tr class="text-center">
-						        <th>&nbsp;</th>
+						        
+						        <th>Date</th>
 						        <th>&nbsp;</th>
 						        <th>Product name</th>
 						        <th>Price</th>
@@ -68,7 +55,7 @@ include 'header.php';
 
 
 
-                                        $sql = "select categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,Cart,Customer,Category where cakeId=fkcakeIdCart and customerId=fkcustomerIdCart and customerName='Albino Braganza' and categoryId=fkcategoryIdCake";
+                                        $sql = "select customerOrderDate,categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,CustomerOrder,Customer,Category where cakeId=fkcakeIdOrder and customerId=fkcustomerIdOrder and customerName='Albino Braganza' and categoryId=fkcategoryIdCake order by customerOrderDate desc";
                                         $result=$conn->query($sql);
                                         $result->setFetchMode(PDO::FETCH_ASSOC);
                                         $total=0;
@@ -78,11 +65,8 @@ include 'header.php';
 										$total+=$row['TotalPrice'];
 									    echo '	<tr class="text-center">
 										        <td >
-										        <form action="" method="POST">
-										        <input type="hidden" name="deleteCake" value="'.$row['cakeId'].'">
-										        <input type="submit" value="Remove" >
+													'.$row['customerOrderDate'].'
 										        
-										        </form>
 										        </td>
 										        
 										        <td class="image-prod"><div class="img" style="background-image:url(images/'.$row['categoryId'].'_'.$row['cakeId'].'.jpg);"></div></td>
@@ -97,9 +81,7 @@ include 'header.php';
 							                      <select name="size">
 
     												<option selected="selected" value="'.$row['cakeSize'].'">'.$row['cakeSize'].'</option>
-							                        <option class="dropdown-item" value="Small">Small(1 KG)</option>
-							                        <option class="dropdown-item" value="Medium">Medium(1.5 KG)</option>
-							                        <option class="dropdown-item" value="Large">Large(2 KG)</option>
+							                        
 							                      </select>
 							                  
 							                    </td><!-- drop down added -->
@@ -125,32 +107,7 @@ include 'header.php';
 					  </div>
     			</div>
     		</div>
-    		<div class="row justify-content-end">
-    			
-    			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					<h3>Cart Totals</h3>
-    					<p class="d-flex">
-    						<span>Subtotal</span>
-    						<span><?php echo ("Rs.".$total);?></span>
-    					</p>
-    					<p class="d-flex">
-    						<span>Delivery</span>
-    						<span>Rs.0.00</span>
-    					</p>
-    					<p class="d-flex">
-    						<span>Discount</span>
-    						<span>Rs.0.00</span>
-    					</p>
-    					<hr>
-    					<p class="d-flex total-price">
-    						<span>Total</span>
-    						<span><?php echo ("Rs.".$total);?></span>
-    					</p>
-    				</div>
-    				<p><a href="checkout.php" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
-    			</div>
-    		</div>
+    		
 			</div>
 		</section>
 
