@@ -1,7 +1,3 @@
-<?php 
-
-
-?>
 
 <html lang="en">
   <head>
@@ -15,7 +11,8 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-  	<style>
+
+    <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
 
@@ -177,18 +174,13 @@ span.psw {
          
            
              color:red;
+       margin-bottom:-20px;
+       margin-left:45px;
             
 
          }
+       
 </style>
-
-
-
-
-
-
-
-
 
     <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
@@ -216,67 +208,202 @@ span.psw {
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+  
+  <script>  
+  
+         function name()
+        {
+            var name = document.getElementById("txtname").value;
+           
+            if (name == "") {
+                document.getElementById("nameerror").innerHTML = "Name is Empty";
+            }
+            else if(!isNaN(name))
+            {
+                document.getElementById("nameerror").innerHTML = "Name is invalid";
+            }
+            else
+            {
+                document.getElementById("nameerror").innerHTML = "";
+            }
+        }
+        function email()
+        {
+           
+            var email = document.getElementById("txtemail").value;
+            var atposition = email.indexOf("@");
+            var dotposition = email.dotposition;
+            if (email == "") {
+                document.getElementById("emailerror").innerHTML = "email is Empty";
+
+            }
+            else if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= email.length) {
+                document.getElementById("emailerror").innerHTML = "email is not correct";
+            }
+            else {
+                document.getElementById("emailerror").innerHTML = "";
+            }
+           
+        }
+        function password()
+        {
+            var password = document.getElementById("password").value;
+            if(password=="")
+            {
+                document.getElementById("passerror").innerHTML = "password is Empty";
+            }
+            else {
+                document.getElementById("passerror").innerHTML = "";
+            }
+        }
+        function conformpassword()
+        {
+            var password = document.getElementById("password").value;
+            var confpass = document.getElementById("passwordconform").value;
+            if(confpass=="")
+            {
+                document.getElementById("confpasserror").innerHTML = "confirm password is Empty";
+            }
+            else if(password!=confpass)
+            {
+                document.getElementById("confpasserror").innerHTML = " password not match";
+            }
+            else {
+                document.getElementById("confpasserror").innerHTML = "";
+            }
+        }
+      
+        function number()
+        {
+            var number = document.getElementById("txtnumber").value;
+            if(number=="")
+            {
+                document.getElementById("numbererror").innerHTML = " number is empty";
+            }
+            else if(number.length!=10)
+            {
+                document.getElementById("numbererror").innerHTML = " number is wrong";
+            }
+            else if(isNaN(number))
+            {
+                document.getElementById("numbererror").innerHTML = " enter number value only";
+            }
+            else {
+                document.getElementById("numbererror").innerHTML = "";
+            }
+        }
+        function validate() {
+          alert("sign up call");
+            name();
+            email();
+            number();
+            password();
+            conformpassword();
+            
+          
+        }
+
+            function loginemail()
+        {
+           
+            var loginemail = document.getElementById("loginemail").value;
+            var atposition = loginemail.indexOf("@");
+            var dotposition = loginemail.dotposition;
+            if (loginemail == "") {
+                document.getElementById("loginemailerror").innerHTML = "email is Empty";
+
+            }
+            else if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= loginemail.length) {
+                document.getElementById("loginemailerror").innerHTML = "email is not correct";
+            }
+            else {
+                document.getElementById("loginemailerror").innerHTML = "";
+            }
+           
+        }
+        function loginpassword()
+        {
+            var loginpassword = document.getElementById("loginpass").value;
+            if(loginpassword=="")
+            {
+                document.getElementById("loginpasserror").innerHTML = "password is Empty";
+            }
+            else {
+                document.getElementById("loginpasserror").innerHTML = "";
+            }
+        }
+            function loginvalidate() {
+          alert("login call");
+            loginemail();
+            loginpassword();
+            
+        }
+        
+
+  
+  </script>
+  
   </head>
   <body class="goto-here">
-		<div class="py-1 bg-primary">
-    	<div class="container">
-    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-	    		<div class="col-lg-12 d-block">
-		    		<div class="row d-flex">
-		    			<div class="col-md pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-						    <span class="text">+ 1235 2355 87</span>
-					    </div>
-					    <div class="col-md pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-						    <span class="text">youremail@email.com</span>
-					    </div>
-					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-						    <span class="text">0-5 Business days delivery &amp; Free Returns</span>
-					    </div>
-				    </div>
-			    </div>
-		    </div>
-		  </div>
+    <div class="py-1 bg-primary">
+      <div class="container">
+        <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+          <div class="col-lg-12 d-block">
+            <div class="row d-flex">
+              <div class="col-md pr-4 d-flex topper align-items-center">
+                <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                <span class="text">+ 1235 2355 87</span>
+              </div>
+              <div class="col-md pr-4 d-flex topper align-items-center">
+                <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                <span class="text">youremail@email.com</span>
+              </div>
+              <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+                <span class="text">0-5 Business days delivery &amp; Free Returns</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Vegefoods</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Vegefoods</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span> Menu
+        </button>
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item dropdown">
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Shop</a>
-              	<a class="dropdown-item" href="wishlist.html">Wishlist</a>
+                <a class="dropdown-item" href="shop.html">Shop</a>
+                <a class="dropdown-item" href="wishlist.html">Wishlist</a>
                 <a class="dropdown-item" href="product-single.html">Single Product</a>
                 <a class="dropdown-item" href="cart.html">Cart</a>
                 <a class="dropdown-item" href="checkout.html">Checkout</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-	          <li class="nav-item"> 
+            <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+            <li class="nav-item"> 
 <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Login</button></a></li>
 
-	        </ul>
-	      </div>
-	    </div>
+          </ul>
+        </div>
+      </div>
 
 
 
 
-	  </nav>
-	  <div id="id01" class="modal">
+    </nav>
+    <div id="id01" class="modal">
   
-  <form class="modal-content animate" style="width: 50%" action="/action_page.php">
+  <form class="modal-content animate" style="width: 50%" action ="" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" style="font-size: 30px;line-height: 2" class="close" title="Close Modal">&times;</span>
     
@@ -295,53 +422,53 @@ span.psw {
       
       <div class="input-group" style="margin-top: 100px;">
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-            <input type="text" placeholder="Enter Your username" class=" textboxes"/>   
-                           <div id="passerror" class="errormsg"></div>
+            <input type="text" id="loginemail" name="loginemail" placeholder="Enter Your username" class=" textboxes"/>   
+                  <span id="loginemailerror" class="errormsg"></span> 
+                          
                   </div>
                   <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-key"></i></span>
-            <input type="text"  name="txtlogname" placeholder="Enter Your password" class=" textboxes"/>   
-               <div id="passerror" class="errormsg"></div>
+            <input type="text"  name="loginpass" id="loginpass" placeholder="Enter Your password" class=" textboxes"/>   
+                <span id="loginpasserror" class="errormsg"></span> 
                   </div>
                   <div class="input-group">
                 
-           <input type="submit" name="logbtn" value="LOGIN" class="btn1"/>   
+           <input type="Button" name="logbtn" value="LOGIN" class="btn1" onclick="loginvalidate()" />   
                         
-                  </div>
-      
-      
+                  </div> 
       
     </div>
+  
     <div id="menu1" class="tab-pane fade">
       
        <div class="input-group" style="margin-top: 50px;">
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
-            <input type="text" placeholder="Enter Your Name" class=" textboxes"/>   
-                           <div id="passerror" class="errormsg"></div>
+            <input type="text" name="txtname" id="txtname" placeholder="Enter Your Name" class=" textboxes"/>   
+                          <span id="nameerror" class="errormsg"></span>
                   </div>
                   <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-key"></i></span>
-            <input type="text"  name="txtlogname" placeholder="Enter Your Email" class=" textboxes"/>   
-               <div id="passerror" class="errormsg"></div>
+            <input type="text"  name="txtemail" id="txtemail" placeholder="Enter Your Email" class=" textboxes"/>   
+               <span id="emailerror" class="errormsg"></span>
                   </div>
                   <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-key"></i></span>
-            <input type="text"  name="txtlogname" placeholder="Enter Your Number" class=" textboxes"/>   
-               <div id="passerror" class="errormsg"></div>
+            <input type="text"  name="txtnumber" id="txtnumber" placeholder="Enter Your Number" class=" textboxes"/>   
+               <span id="numbererror" class="errormsg"></span>
                   </div>
                   <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-key"></i></span>
-            <input type="text"  name="txtlogname" placeholder="Enter Your password" class=" textboxes"/>   
-               <div id="passerror" class="errormsg"></div>
+            <input type="text"  name="password" id="password" placeholder="Enter Your password" class=" textboxes"/>   
+               <span id="passerror" class="errormsg"></span>
                   </div>
                   <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-key"></i></span>
-            <input type="text"  name="txtlogname" placeholder="Enter Your Comfirm password" class=" textboxes"/>   
-               <div id="passerror" class="errormsg"></div>
+            <input type="text"  name="passwordconform" id="passwordconform" placeholder="Enter Your Comfirm password" class=" textboxes"/>   
+               <span id="confpasserror" class="errormsg"></span>
                   </div>
                   <div class="input-group">
                 
-           <input type="submit" name="logbtn" value="SIGNUP" class="btn1"/>   
+           <input type="Button" name="signbtn" value="SIGNUP" class="btn1" onclick="validate()" />   
                         
                   </div>
     
@@ -368,7 +495,7 @@ window.onclick = function(event) {
 }
 </script>
 
-	
+  
     <!-- END nav -->
 
 
