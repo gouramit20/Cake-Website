@@ -1,15 +1,33 @@
 
 <?php 
-session_start();
+ if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+
+if(isset($_GET['Signout'])){
+  $_SESSION['currentUserLoggedIn']="Not Logged"; 
+                $_SESSION['currentUserLoggedInId']=1; 
+                $_SESSION['loggedin'] = false; 
+                $_SESSION['cartCount']=0;
+}
+
+
 
 if(isset($_SESSION['currentUserLoggedIn']) && $_SESSION['loggedin'] == true){
-                $_SESSION['currentUserLoggedIn']='albino'; 
-                $_SESSION['loggedin'] = true; 
   $currentUser=$_SESSION['currentUserLoggedIn'];
 }else
 {
    $currentUser="no user";
 }
+
+
+
+if(isset($_POST['loginNow'])){
+  db();
+
+}
+
 
 
 
@@ -23,17 +41,53 @@ catch (PDOException $e) {
     die(print_r($e));
 }
 
-
-             $sql = "select count(*) as cartCount from Cart where fkcustomerIdCart=10001";
+try{   
+             $sql = "select count(*) as cartCount from Cart where fkcustomerIdCart=".$_SESSION['currentUserLoggedInId'];
              $result=$conn->query($sql);
 
              if($row = $result->fetch()){
-              $cartCount=$row['cartCount'];
+              $_SESSION['cartCount']=$row['cartCount'];
              }
              else
              {
-              $cartCount=0;
+              $_SESSION['cartCount']=0;
              }
+             }
+           
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+
+             
+
+
+  function db(){
+      try {
+   $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+     $sql = "select customerName,customerId from Customer where customerEmail='".$_POST['loginemail']."' and customerPassword='".$_POST['loginpass']."'";
+              
+                     $result=$conn->query($sql);    
+
+           if($row = $result->fetch()){
+           
+                $_SESSION['currentUserLoggedIn']=$row['customerName']; 
+                $_SESSION['currentUserLoggedInId']=$row['customerId']; 
+                $_SESSION['loggedin'] = true;  
+
+
+               }else{
+              
+               echo "<script> alert('Wrong Credentials!!!'')</script>";   
+               }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -250,7 +304,7 @@ span.psw {
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
   
-  <script>  
+  <script type="text/javascript">  
   
          function name()
         {
@@ -357,7 +411,7 @@ span.psw {
             conformpassword();
 
             if(name()  && email() && number() && password() && conformpassword()){
-                
+
             }else{
 
             }
@@ -399,28 +453,34 @@ span.psw {
                 return true;
             }
         }
+
             function loginvalidate() {
           alert("login call");
             
             
-            loginemail();
-            loginpassword();
+            var emailCorrect=loginemail();
+            var passwordCorrect=loginpassword();
+
+          
+            alert(emailCorrect);
+            alert(passwordCorrect);
 
             if(loginemail() && loginpassword()){
+              alert("if part");
+            var loginemails = document.getElementById("loginemail").value;
+            var loginpasswords= document.getElementById("loginpass").value;
+          }else{
+            alert("final else");
+          }
 
-
-                <?php  $_SESSION["currentUserLoggedIn"]="albino"; 
-                $_SESSION['loggedin'] = false;   ?>
-
-            }else{
-
-            }
-            
         }
-        
+            
+       
 
   
   </script>
+
+    
   
   </head>
   <body class="goto-here">
@@ -435,7 +495,7 @@ span.psw {
               </div>
               <div class="col-md pr-4 d-flex topper align-items-center">
                 <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-                <span class="text" value=""><?php echo ($currentUser);?></span>
+                <span class="text" value=""><?php echo ($_SESSION['currentUserLoggedIn']);?></span>
               </div>
               <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
                 <span class="text">0-5 Business days delivery &amp; Free Returns</span>
@@ -469,10 +529,10 @@ span.psw {
 	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[<?php echo ($cartCount); ?>]</a></li>
+	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[<?php echo ($_SESSION['cartCount']); ?>]</a></li>
 	          <li class="nav-item"> 
-<button id="loginButton" onclick="document.getElementById('id01').style.display='block'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Login</button></a></li>
-<li class="nav-item"> 
+<button id="loginButton" onclick="document.getElementById('id01').style.display='block'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Login</button></li>
+<li class="nav-item"> <a href=<?php echo 'index.php?Signout=true'; ?>>
 <button id="logoutButton" onclick="document.getElementById('id02').style.display='none'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Logout</button></a></li>
 
 
@@ -504,6 +564,9 @@ span.psw {
     <div id="home" class="tab-pane fade in active">
       
       <div class="input-group" style="margin-top: 100px;">
+
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return loginvalidate()">
+
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
             <input type="text" id="loginemail" name="loginemail" placeholder="Enter Your username" class=" textboxes"/>   
                   <span id="loginemailerror" class="errormsg"></span> 
@@ -516,7 +579,9 @@ span.psw {
                   </div>
                   <div class="input-group">
                 
-           <input type="Button" name="logbtn" value="LOGIN" class="btn1" onclick="loginvalidate()" />   
+           <input type="submit" name="logbtn" value="LOGIN" class="btn1" onclick="" />
+           <input type="hidden" name="loginNow"/>   
+           </form>
                         
                   </div> 
       
@@ -525,6 +590,10 @@ span.psw {
     <div id="menu1" class="tab-pane fade">
       
        <div class="input-group" style="margin-top: 50px;">
+
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return validate()">
+
+
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
             <input type="text" name="txtname" id="txtname" placeholder="Enter Your Name" class=" textboxes"/>   
                           <span id="nameerror" class="errormsg"></span>
@@ -550,8 +619,10 @@ span.psw {
                <span id="confpasserror" class="errormsg"></span>
                   </div>
                   <div class="input-group">
+
                 
-           <input type="Button" name="signbtn" value="SIGNUP" class="btn1" onclick="validate()" />   
+           <input type="submit" name="signbtn" value="SIGNUP" class="btn1" />   
+         </form>
                         
                   </div>
     

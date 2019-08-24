@@ -26,7 +26,7 @@
     				<a href="images/product-1.jpg" class="image-popup"><img src="images/'.$_GET['cakeCategory'].'_'.$_GET['cakeId'].'.jpg" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    			<form onsubmit = "return checkUserLoggedInn()"  name="saveCake" method="POST">
+    			<form onsubmit = "return checkUserLoggedInn()" action="cart.php" name="saveCake" method="POST">
     				<h3>'.$_GET['cakeName'].'</h3>
     				<div class="rating d-flex">
 							<p class="text-left mr-4">
@@ -298,15 +298,10 @@ echo '
             	
 			
       			 function checkUserLoggedInn(){
-			alert("checkUserLoggedIn");
-			
-			
-			alert("step 2");
 					
 					if(<?php echo ("'".$_SESSION["currentUserLoggedIn"]."'");?>!="" && <?php echo ("'".$_SESSION["loggedin"]."'");?>==true){
          
 					
-            alert("if contition");
               document.getElementById("loginButton").style.display="none";
               document.getElementById("logoutButton").style.display="display";
              
@@ -320,7 +315,7 @@ echo '
               document.getElementById("loginButton").style.display="display";
               document.getElementById("logoutButton").style.display="none";
              $("#loginButton").click();
-            alert("else contition");
+      
 
           return false;
 		}

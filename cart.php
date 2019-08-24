@@ -1,6 +1,6 @@
 
 <?php 
-
+session_start();
 //save add to cart
 try {
    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
@@ -13,20 +13,31 @@ catch (PDOException $e) {
 
 if(isset($_POST['selectedSize'])&&isset($_POST['quantity'])){
                                           
-
-
-             $sql = "INSERT into Cart VALUES('".$_POST['selectedSize']."',".$_POST['quantity'].",".$_POST['currentUserId'].",".$_POST['cakeId'].")";
+			 $userID=$_SESSION['currentUserLoggedInId'];
+             $sql = "INSERT into Cart VALUES('".$_POST['selectedSize']."',".$_POST['quantity'].",".$userID.",".$_POST['cakeId'].")";
              $result=$conn->query($sql);
 
 }
 
 if(isset($_POST['deleteCake']))
+
 {
-				 $sql = "DELETE from Cart where fkcakeIdCart=".$_POST['deleteCake']."and fkcustomerIdCart=10001";
+				 $userID=$_SESSION['currentUserLoggedInId'];
+				 $sql = "DELETE from Cart where fkcakeIdCart=".$_POST['deleteCake']."and fkcustomerIdCart=".$userID;
                  $result=$conn->query($sql);
 }
 
+    try {
+   $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
 include 'header.php';
+
 
 ?>
 
@@ -68,7 +79,7 @@ include 'header.php';
 
 
 
-                                        $sql = "select categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,Cart,Customer,Category where cakeId=fkcakeIdCart and customerId=fkcustomerIdCart and customerName='Albino Braganza' and categoryId=fkcategoryIdCake";
+                                        $sql = "select categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,Cart,Customer,Category where cakeId=fkcakeIdCart and customerId=fkcustomerIdCart and customerName='".$_SESSION['currentUserLoggedIn']."' and categoryId=fkcategoryIdCake";
                                         $result=$conn->query($sql);
                                         $result->setFetchMode(PDO::FETCH_ASSOC);
                                         $total=0;
@@ -158,6 +169,35 @@ include 'header.php';
 
 
 <?php include 'footer.php';?>
+
+<script type="text/javascript">
+	checkUserLoggedInn();
+	     			 function checkUserLoggedInn(){
+					
+					if(<?php echo ("'".$_SESSION["currentUserLoggedIn"]."'");?>!="Not Logged" && <?php echo ("'".$_SESSION["loggedin"]."'");?>==true){
+         
+					
+              document.getElementById("loginButton").style.display="none";
+              document.getElementById("logoutButton").style.display="display";
+             
+
+         
+          return true;
+      }
+      else
+      {
+            
+              document.getElementById("loginButton").style.display="display";
+              document.getElementById("logoutButton").style.display="none";
+             $("#loginButton").click();
+      
+
+          return false;
+		}
+
+      	
+}
+</script>
 
       </body>
 </html>

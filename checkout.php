@@ -119,7 +119,7 @@
 							    print("Error connecting to SQL Server.");
 							    die(print_r($e));
 							}
-							 $sql = "select cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,Cart,Customer where cakeId=fkcakeIdCart and customerId=fkcustomerIdCart and customerId=10001 ";
+							 $sql = "select cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,Cart,Customer where cakeId=fkcakeIdCart and customerId=fkcustomerIdCart and customerId=".$_SESSION['currentUserLoggedInId'];
                                         $result=$conn->query($sql);
                                         $result->setFetchMode(PDO::FETCH_ASSOC);
                                         $total=0;
@@ -186,6 +186,37 @@
 
 
 <?php include 'footer.php';?>
+
+<?php include 'footer.php';?>
+
+<script type="text/javascript">
+	
+	     			 function checkUserLoggedInn(){
+					
+					if(<?php echo ("'".$_SESSION["currentUserLoggedIn"]."'");?>!="" && <?php echo ("'".$_SESSION["loggedin"]."'");?>==true){
+         
+					
+              document.getElementById("loginButton").style.display="none";
+              document.getElementById("logoutButton").style.display="display";
+             
+
+         
+          return true;
+      }
+      else
+      {
+            
+              document.getElementById("loginButton").style.display="display";
+              document.getElementById("logoutButton").style.display="none";
+             $("#loginButton").click();
+      
+
+          return false;
+		}
+
+      	
+}
+</script>
 
       </body>
 </html>

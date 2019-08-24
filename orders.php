@@ -55,7 +55,7 @@ include 'header.php';
 
 
 
-                                        $sql = "select customerOrderDate,categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,CustomerOrder,Customer,Category where cakeId=fkcakeIdOrder and customerId=fkcustomerIdOrder and customerName='Albino Braganza' and categoryId=fkcategoryIdCake order by customerOrderDate desc";
+                                        $sql = "select customerOrderDate,categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from Cake,CustomerOrder,Customer,Category where cakeId=fkcakeIdOrder and customerId=fkcustomerIdOrder and customerName='".$_SESSION['currentUserLoggedIn']."' and categoryId=fkcategoryIdCake order by customerOrderDate desc";
                                         $result=$conn->query($sql);
                                         $result->setFetchMode(PDO::FETCH_ASSOC);
                                         $total=0;
@@ -115,6 +115,37 @@ include 'header.php';
 
 
 <?php include 'footer.php';?>
+
+
+<script type="text/javascript">
+	checkUserLoggedInn();
+	     			 function checkUserLoggedInn(){
+					
+					if(<?php echo ("'".$_SESSION["currentUserLoggedIn"]."'");?>!="Not Logged" && <?php echo ("'".$_SESSION["loggedin"]."'");?>==true){
+         
+					
+              document.getElementById("loginButton").style.display="none";
+              document.getElementById("logoutButton").style.display="display";
+             
+
+         
+          return true;
+      }
+      else
+      {
+            
+              document.getElementById("loginButton").style.display="display";
+              document.getElementById("logoutButton").style.display="none";
+             $("#loginButton").click();
+      
+
+          return false;
+		}
+
+      	
+}
+</script>
+
 
       </body>
 </html>
