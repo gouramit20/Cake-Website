@@ -1,4 +1,5 @@
 <?php 
+session_start();
 if(isset($_POST['paid']))
 {
 	try {
@@ -11,16 +12,16 @@ catch (PDOException $e) {
 }
    $sql = "select categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from   Cake,Cart,Customer,Category where cakeId=fkcakeIdCart and 
    	 	customerId=fkcustomerIdCart and
-   	 	customerName='Albino Braganza' and
+   	 	customerName='".$_SESSION['currentUserLoggedIn']."' and
    	 	categoryId=fkcategoryIdCake";
                                         $result=$conn->query($sql);
                                         $result->setFetchMode(PDO::FETCH_ASSOC);
                                         $total=0;
                                         while ($row = $result->fetch())   
 									{
-							             $sql = "INSERT into CustomerOrder VALUES(".$row['quantity'].",'".$row['cakeSize']."',10001,".$row['cakeId'].",'".date('Y/m/d')."')";
+							             $sql = "INSERT into CustomerOrder VALUES(".$row['quantity'].",'".$row['cakeSize']."',".$_SESSION['currentUserLoggedInId'].",".$row['cakeId'].",'".date('Y/m/d')."')";
 							             $conn->query($sql);
-										 $sql = "DELETE from Cart where fkcakeIdCart=".$row['cakeId']."and fkcustomerIdCart=10001";
+										 $sql = "DELETE from Cart where fkcakeIdCart=".$row['cakeId']."and fkcustomerIdCart=".$_SESSION['currentUserLoggedInId']."";
 						                 $conn->query($sql);
 									}
 }
