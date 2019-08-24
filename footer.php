@@ -114,4 +114,35 @@
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
    
+
+
+
+   <?php
+      if(isset($_SESSION['currentUserLoggedIn']) && $_SESSION['loggedin'] == true){
+          $currentUser=$_SESSION['currentUserLoggedIn'];
+          ?>
+
+            <script >
+              document.getElementById('loginButton').style.display='none';
+              document.getElementById('logoutButton').style.display='display';
+              </script>
+
+          <?php
+      }
+      else
+      {
+        $currentUser="no user";
+          ?>
+
+            <script >
+              document.getElementById('loginButton').style.display='display';
+              document.getElementById('logoutButton').style.display='none';
+             // $("#loginButton").click();
+            </script>
+
+          <?php
+
+      }
+
+   ?>
   

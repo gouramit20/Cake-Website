@@ -1,5 +1,18 @@
 
 <?php 
+session_start();
+
+if(isset($_SESSION['currentUserLoggedIn']) && $_SESSION['loggedin'] == true){
+                $_SESSION['currentUserLoggedIn']='albino'; 
+                $_SESSION['loggedin'] = true; 
+  $currentUser=$_SESSION['currentUserLoggedIn'];
+}else
+{
+   $currentUser="no user";
+}
+
+
+
 
     try {
    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
@@ -23,7 +36,7 @@ catch (PDOException $e) {
              }
 ?>
 
-
+<!DOCTYPE html>
 <html lang="en">
   <head>
 
@@ -245,14 +258,17 @@ span.psw {
            
             if (name == "") {
                 document.getElementById("nameerror").innerHTML = "Name is Empty";
+                return false;
             }
             else if(!isNaN(name))
             {
                 document.getElementById("nameerror").innerHTML = "Name is invalid";
+                style="display:none" 
             }
             else
             {
                 document.getElementById("nameerror").innerHTML = "";
+                return true;
             }
         }
         function email()
@@ -263,13 +279,16 @@ span.psw {
             var dotposition = email.dotposition;
             if (email == "") {
                 document.getElementById("emailerror").innerHTML = "email is Empty";
+                return false;
 
             }
             else if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= email.length) {
                 document.getElementById("emailerror").innerHTML = "email is not correct";
+                return false;
             }
             else {
                 document.getElementById("emailerror").innerHTML = "";
+                return true;
             }
            
         }
@@ -279,9 +298,11 @@ span.psw {
             if(password=="")
             {
                 document.getElementById("passerror").innerHTML = "password is Empty";
+                return false;
             }
             else {
                 document.getElementById("passerror").innerHTML = "";
+                return true;
             }
         }
         function conformpassword()
@@ -291,13 +312,16 @@ span.psw {
             if(confpass=="")
             {
                 document.getElementById("confpasserror").innerHTML = "confirm password is Empty";
+                return false;
             }
             else if(password!=confpass)
             {
                 document.getElementById("confpasserror").innerHTML = " password not match";
+                return false;
             }
             else {
                 document.getElementById("confpasserror").innerHTML = "";
+                return true;
             }
         }
       
@@ -307,17 +331,21 @@ span.psw {
             if(number=="")
             {
                 document.getElementById("numbererror").innerHTML = " number is empty";
+                return false;
             }
             else if(number.length!=10)
             {
                 document.getElementById("numbererror").innerHTML = " number is wrong";
+                return false;
             }
             else if(isNaN(number))
             {
                 document.getElementById("numbererror").innerHTML = " enter number value only";
+                return false;
             }
             else {
                 document.getElementById("numbererror").innerHTML = "";
+                return true;
             }
         }
         function validate() {
@@ -327,6 +355,12 @@ span.psw {
             number();
             password();
             conformpassword();
+
+            if(name()  && email() && number() && password() && conformpassword()){
+                
+            }else{
+
+            }
             
           
         }
@@ -339,13 +373,16 @@ span.psw {
             var dotposition = loginemail.dotposition;
             if (loginemail == "") {
                 document.getElementById("loginemailerror").innerHTML = "email is Empty";
+                return false;
 
             }
             else if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= loginemail.length) {
                 document.getElementById("loginemailerror").innerHTML = "email is not correct";
+                return false;
             }
             else {
                 document.getElementById("loginemailerror").innerHTML = "";
+                return true;
             }
            
         }
@@ -355,15 +392,29 @@ span.psw {
             if(loginpassword=="")
             {
                 document.getElementById("loginpasserror").innerHTML = "password is Empty";
+                return false;
             }
             else {
                 document.getElementById("loginpasserror").innerHTML = "";
+                return true;
             }
         }
             function loginvalidate() {
           alert("login call");
+            
+            
             loginemail();
             loginpassword();
+
+            if(loginemail() && loginpassword()){
+
+
+                <?php  $_SESSION["currentUserLoggedIn"]="albino"; 
+                $_SESSION['loggedin'] = false;   ?>
+
+            }else{
+
+            }
             
         }
         
@@ -384,7 +435,7 @@ span.psw {
               </div>
               <div class="col-md pr-4 d-flex topper align-items-center">
                 <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-                <span class="text">youremail@email.com</span>
+                <span class="text" value=""><?php echo ($currentUser);?></span>
               </div>
               <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
                 <span class="text">0-5 Business days delivery &amp; Free Returns</span>
@@ -420,7 +471,10 @@ span.psw {
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[<?php echo ($cartCount); ?>]</a></li>
 	          <li class="nav-item"> 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Login</button></a></li>
+<button id="loginButton" onclick="document.getElementById('id01').style.display='block'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Login</button></a></li>
+<li class="nav-item"> 
+<button id="logoutButton" onclick="document.getElementById('id02').style.display='none'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Logout</button></a></li>
+
 
           </ul>
         </div>
@@ -441,7 +495,7 @@ span.psw {
     <div class="container">
     
  <ul class="nav nav-pills">
-    <li class="active"><a data-toggle="pill" href="#home">Login</a></li>
+    <li class="active"><a  data-toggle="pill" href="#home">Login</a></li>
     <li><a data-toggle="pill" href="#menu1">Signup</a></li>
     
   </ul>
@@ -515,11 +569,19 @@ span.psw {
 <script>
 // Get the modal
 var modal = document.getElementById('id01');
+var logoutVar=document.getElementById('id02');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
-        modal.style.display = "none";
+        
+         
+        
+    }
+     if (event.target == logoutVar) {
+        
+        
+        
     }
 }
 </script>
