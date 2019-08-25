@@ -3,7 +3,13 @@
  if(!isset($_SESSION)) 
     { 
         session_start(); 
+        $_SESSION['currentUserLoggedIn']="Not Logged"; 
+                $_SESSION['currentUserLoggedInId']=1; 
+                $_SESSION['loggedin'] = false; 
+                $_SESSION['cartCount']=0;
+                
     } 
+
 
 if(isset($_GET['Signout'])){
   $_SESSION['currentUserLoggedIn']="Not Logged"; 
@@ -11,6 +17,8 @@ if(isset($_GET['Signout'])){
                 $_SESSION['loggedin'] = false; 
                 $_SESSION['cartCount']=0;
 }
+
+
 
 
 
@@ -60,10 +68,34 @@ catch (PDOException $e) {
 }
 
 
+
+
+if(isset($_POST['registerUser'])){ /*register ner user if $_POST['registerUser'] is set*/
+
+$sql="SELECT TOP 1 customerId  as lastId from Customer ORDER BY customerId DESC";
+$result=$conn->query($sql); 
+ if($row = $result->fetch()){
+  $lastId=$row['lastId']+1;
+ }
+
+  $sql = "INSERT INTO Customer( 
+       customerId
+      ,customerName
+      ,customerAddress
+      ,customerNumber
+      ,customerEmail    
+      ,customerPassword) VALUES(".$lastId.",'".$_POST['txtname']."','unknown',1,'".$_POST['txtemail']."','".$_POST['password']."')";
+              
+      $result=$conn->query($sql); 
+
+
+
+          
+}
              
 
 
-  function db(){
+  function db(){/*check if user is valid*/
       try {
    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -85,7 +117,7 @@ catch (PDOException $e) {
 
                }else{
               
-               echo "<script> alert('Wrong Credentials!!!'')</script>";   
+               echo "<script> alert('Wrong Credentials!!!'');</script>";   
                }
   }
 ?>
@@ -526,10 +558,10 @@ span.psw {
             </li>
 
             <li class="nav-item"><a href="orders.php" class="nav-link">Ordered</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[<?php echo ($_SESSION['cartCount']); ?>]</a></li>
+	          <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+	          <li class="nav-item cta cta-colored"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[<?php echo ($_SESSION['cartCount']); ?>]</a></li>
 	          <li class="nav-item"> 
 <button id="loginButton" onclick="document.getElementById('id01').style.display='block'" style="width:auto;margin-left: 10px;height: 50px;margin-bottom: 10px;">Login</button></li>
 <li class="nav-item"> <a href=<?php echo 'index.php?Signout=true'; ?>>
@@ -565,7 +597,7 @@ span.psw {
       
       <div class="input-group" style="margin-top: 100px;">
 
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return loginvalidate()">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return loginvalidate()" method="POST">
 
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
             <input type="text" id="loginemail" name="loginemail" placeholder="Enter Your username" class=" textboxes"/>   
@@ -589,11 +621,9 @@ span.psw {
   
     <div id="menu1" class="tab-pane fade">
       
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return validate()" method="POST">
        <div class="input-group" style="margin-top: 50px;">
-
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return validate()">
-
-
+              
                 <span class="input-group-addon"><i class="fas fa-user"></i></span>
             <input type="text" name="txtname" id="txtname" placeholder="Enter Your Name" class=" textboxes"/>   
                           <span id="nameerror" class="errormsg"></span>
@@ -615,12 +645,13 @@ span.psw {
                   </div>
                   <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-key"></i></span>
-            <input type="text"  name="passwordconform" id="passwordconform" placeholder="Enter Your Comfirm password" class=" textboxes"/>   
+            <input type="text"  name="passwordconform" id="passwordconform" placeholder="Enter Your Comfirm password" class=" textboxes"/>
+             
                <span id="confpasserror" class="errormsg"></span>
                   </div>
                   <div class="input-group">
 
-                
+                 <input type="hidden" name="registerUser"/><!-- to check if there's a new registration to save to db--> 
            <input type="submit" name="signbtn" value="SIGNUP" class="btn1" />   
          </form>
                         
