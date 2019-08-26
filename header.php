@@ -19,7 +19,7 @@ if(isset($_GET['Signout'])){
 }
 
 
-
+/*$conn->close();*/
 
 
 if(isset($_SESSION['currentUserLoggedIn']) && $_SESSION['loggedin'] == true){
