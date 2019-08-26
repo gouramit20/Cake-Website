@@ -457,7 +457,14 @@ span.psw {
           
         }
 
-            function loginemail()
+          
+            
+       
+
+  
+  </script>
+  <script type="text/javascript">
+      function loginemail()
         {
            
             var loginemail = document.getElementById("loginemail").value;
@@ -493,27 +500,20 @@ span.psw {
         }
 
             function loginvalidate() {
-          
-            alert("log in");
-            
-           /* loginemail();
+          alert("login call");
+           
+             loginemail();
             loginpassword();
 
-          
             if(loginemail() && loginpassword()){
-              
-              return true;
-            
-          }else{
-            
-            return false;
-          }*/
-return false;
-        }
-            
-       
+                return true;
+            }else{
+              return false;
 
-  
+            }
+            
+          
+        }
   </script>
 
     
@@ -626,7 +626,7 @@ return false;
                                                     </div>
                                                     <div class="input-group">
                                                          <input type="hidden" name="loginNow"/>        
-                                                         <input type="submit" name="logbtn" value="LOGIN" class="btn1" />       
+                                                         <input type="submit" name="logbtn" value="LOGIN" onclick="return loginvalidate()"class="btn1" />       
                                                     </div> 
                                       
                                            </form>
@@ -668,7 +668,7 @@ return false;
                                     </div>
                                     <div class="input-group">
                                           <input type="hidden" name="registerUser"/><!-- to check if there's a new registration to save to db--> 
-                                          <input type="submit" name="signbtn" value="SIGNUP" class="btn1" /> 
+                                          <input type="submit" name="signbtn" value="SIGNUP"  class="btn1" /> 
                                     </div>
                               </form>
                                                       
