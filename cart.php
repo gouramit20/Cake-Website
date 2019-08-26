@@ -1,6 +1,11 @@
 
 <?php 
-session_start();
+
+if(!isset($_SESSION)) 
+    { 
+       session_start(); 
+                
+    } 
 //save add to cart
 try {
    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
@@ -14,6 +19,7 @@ catch (PDOException $e) {
 if(isset($_POST['selectedSize'])&&isset($_POST['quantity'])){
                                           
 			 $userID=$_SESSION['currentUserLoggedInId'];
+			 
              $sql = "INSERT into Cart VALUES('".$_POST['selectedSize']."',".$_POST['quantity'].",".$userID.",".$_POST['cakeId'].")";
              $result=$conn->query($sql);
 
@@ -174,7 +180,7 @@ include 'header.php';
 	checkUserLoggedInn();
 	     			 function checkUserLoggedInn(){
 					
-					if(<?php echo ("'".$_SESSION["currentUserLoggedIn"]."'");?>!="Not Logged" && <?php echo ("'".$_SESSION["loggedin"]."'");?>==true){
+					if(<?php echo ("'".$_SESSION["currentUserLoggedIn"]."'");?>!="" && <?php echo ("'".$_SESSION["loggedin"]."'");?>==true){
          
 					
               document.getElementById("loginButton").style.display="none";
@@ -198,6 +204,7 @@ include 'header.php';
       	
 }
 </script>
+
 
       </body>
 </html>

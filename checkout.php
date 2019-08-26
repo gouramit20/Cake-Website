@@ -189,7 +189,7 @@
 <?php include 'footer.php';?>
 
 <script type="text/javascript">
-	
+	checkUserLoggedInn();
 	     			 function checkUserLoggedInn(){
 					
 					if(<?php echo ("'".$_SESSION["currentUserLoggedIn"]."'");?>!="" && <?php echo ("'".$_SESSION["loggedin"]."'");?>==true){
