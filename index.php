@@ -6,6 +6,12 @@
                 
     } 
 
+if(!isset($_SESSION['currentUserLoggedInId'])) 
+    { 
+      $_SESSION['currentUserLoggedInId']=1;          
+    } 
+
+
 if(isset($_POST['paid']))
 {
 	try {
@@ -13,8 +19,10 @@ if(isset($_POST['paid']))
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
+     echo "<script> alert('Please Check Internet Connection!!!');</script>";  
+
+     
+
 }
    $sql = "select categoryId,cakeId,cakeName,cakeSize,cakePrice as basePrice,quantity,cakePrice*quantity as TotalPrice from   Cake,Cart,Customer,Category where cakeId=fkcakeIdCart and 
    	 	customerId=fkcustomerIdCart and

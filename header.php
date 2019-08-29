@@ -28,16 +28,14 @@ if(isset($_POST['loginNow'])){
 
 
 
-    try {
-   $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
+    
+  
+
 
 try{   
+   $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
   if(isset($_SESSION['currentUserLoggedInId'])){
     $tempData=$_SESSION['currentUserLoggedInId'];
       if($tempData!="1"){
@@ -61,8 +59,7 @@ try{
              }
            
 catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
+     echo "<script> alert('Please Check Internet Connection!!!');</script>";  
 }
 
 if(isset($_SESSION['currentUserLoggedIn']) && $_SESSION['loggedin'] == true){
@@ -77,24 +74,28 @@ if(isset($_SESSION['currentUserLoggedIn']) && $_SESSION['loggedin'] == true){
 
 if(isset($_POST['registerUser'])){ /*register ner user if $_POST['registerUser'] is set*/
 
-$sql="SELECT TOP 1 customerId  as lastId from Customer ORDER BY customerId DESC";
+$sql="SELECT customerId from Customer where customerEmail='".$_POST['txtemail']."'";  
 $result=$conn->query($sql); 
- if($row = $result->fetch()){
-  $lastId=$row['lastId']+1;
- }
+if($row = $result->fetch()){
+     echo "<script> alert('User Already Exist!!!');</script>";   
+}
+else{
+          $sql="SELECT TOP 1 customerId  as lastId from Customer ORDER BY customerId DESC";
+          $result=$conn->query($sql); 
+           if($row = $result->fetch()){
+            $lastId=$row['lastId']+1;
+           }
 
-  $sql = "INSERT INTO Customer( 
-       customerId
-      ,customerName
-      ,customerAddress
-      ,customerNumber
-      ,customerEmail    
-      ,customerPassword) VALUES(".$lastId.",'".$_POST['txtname']."','unknown',1,'".$_POST['txtemail']."','".$_POST['password']."')";
-              
-      $result=$conn->query($sql); 
-
-
-
+            $sql = "INSERT INTO Customer( 
+                 customerId
+                ,customerName
+                ,customerAddress
+                ,customerNumber
+                ,customerEmail    
+                ,customerPassword) VALUES(".$lastId.",'".$_POST['txtname']."','unknown',1,'".$_POST['txtemail']."','".$_POST['password']."')";
+                        
+                $result=$conn->query($sql); 
+}
           
 }
              
@@ -104,14 +105,9 @@ $result=$conn->query($sql);
       try {
    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
-     $sql = "select customerName,customerId from Customer where customerEmail='".$_POST['loginemail']."' and customerPassword='".$_POST['loginpass']."'";
+    $sql = "select customerName,customerId from Customer where customerEmail='".$_POST['loginemail']."' and customerPassword='".$_POST['loginpass']."'";
               
-                     $result=$conn->query($sql);    
+            $result=$conn->query($sql);    
 
            if($row = $result->fetch()){
            
@@ -124,6 +120,12 @@ catch (PDOException $e) {
               
                echo "<script> alert('Wrong Credentials!!!');</script>";   
                }
+}
+catch (PDOException $e) {
+     echo "<script> alert('Please Check Internet Connection!!!');</script>";  
+
+}
+     
   }
 ?>
 
@@ -440,8 +442,8 @@ span.psw {
             }
         }
         function validate() {
-          alert("sign up call");
-           name();
+          
+            name();
             email();
             number();
             password();
@@ -500,7 +502,7 @@ span.psw {
         }
 
             function loginvalidate() {
-          alert("login call");
+          
            
              loginemail();
             loginpassword();
@@ -605,13 +607,13 @@ span.psw {
     <div class="container">
     
                     <ul class="nav nav-pills">
-                        <li class="active"><a  data-toggle="pill" href="#home">Login</a></li>
+                        <li class="active"><a  data-toggle="pill" href="#home" class="show">Login</a></li>
                         <li><a data-toggle="pill" href="#menu1">Signup</a></li>
                     </ul>
                     
         <div class="tab-content">
                              
-                                    <div id="home" class="tab-pane fade in active">
+                                    <div id="home" class="tab-pane fade in active show">
                                         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return loginvalidate()" method="POST">
                                                     <div class="input-group" style="margin-top: 100px;">
                                                           <span class="input-group-addon"><i class="fas fa-user"></i></span>
@@ -621,7 +623,7 @@ span.psw {
                                                     </div>
                                                     <div class="input-group">
                                                               <span class="input-group-addon"><i class="fas fa-key"></i></span>
-                                                              <input type="text"  name="loginpass" id="loginpass" placeholder="Enter Your password" class=" textboxes"/>   
+                                                              <input type="password"  name="loginpass" id="loginpass" placeholder="Enter Your password" class=" textboxes"/>   
                                                                 <span id="loginpasserror" class="errormsg"></span> 
                                                     </div>
                                                     <div class="input-group">

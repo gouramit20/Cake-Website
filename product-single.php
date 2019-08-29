@@ -62,24 +62,24 @@
 							</div>
 							<div class="w-100"></div>
 							<div class="input-group col-md-6 d-flex mb-3">
-	             	<span class="input-group-btn mr-2">
-	                	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-	                   <i class="ion-ios-remove"></i>
-	                	</button>
-	            		</span>
-	             	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="3" min="2" max="100">
-	             	<span class="input-group-btn ml-2">
-	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-	                     <i class="ion-ios-add"></i>
-	                 </button>
-	             	</span>
-	          	</div>
+	             	                <span class="input-group-btn mr-2">
+						                	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="" style="margin-left: -27px;">
+						                    <i class="ion-ios-remove"></i>
+						                	</button>
+	            					</span>
+	             					<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="5"/>
+	             					<span class="input-group-btn ml-2">
+			                				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+			                    			 <i class="ion-ios-add"></i>
+			                 				</button>
+	             					</span>
+	          				</div>
 	          	<div class="w-100"></div>
 	          	<div class="col-md-12">
 	          		<p style="color: #000;">600 kg available</p>
 	          	</div>
           	</div>
-          	<input type="hidden" name="currentUserId" value=10001>
+          	
           	<input type="hidden" name="cakeId" value="'.$_GET['cakeId'].'">
 
           	';?>
@@ -256,7 +256,7 @@ echo '
   <script>
 		$(document).ready(function(){
 
-		var quantity=0;
+		var quantity=1;
 		   $('.quantity-right-plus').click(function(e){
 		        
 		        // Stop acting like a button
@@ -265,8 +265,9 @@ echo '
 		        var quantity = parseInt($('#quantity').val());
 		        
 		        // If is not undefined
-		            
+		            if(quantity<10){
 		            $('#quantity').val(quantity + 1);
+		        }
 
 		          
 		            // Increment
@@ -279,10 +280,7 @@ echo '
 		        // Get the field name
 		        var quantity = parseInt($('#quantity').val());
 		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
+		            if(quantity>1){
 		            $('#quantity').val(quantity - 1);
 		            }
 		    });
@@ -299,7 +297,7 @@ echo '
 			
       			 function checkUserLoggedInn(){
 					
-					if(<?php echo ("'".$_SESSION["currentUserLoggedIn"]."'");?>!="" && <?php echo ("'".$_SESSION["loggedin"]."'");?>==true){
+					if(<?php echo ("'".$_SESSION["currentUserLoggedIn"]."'");?>!="Not Logged" && <?php echo ("'".$_SESSION["loggedin"]."'");?>==true){
          
 					
               document.getElementById("loginButton").style.display="none";

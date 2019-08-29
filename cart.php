@@ -6,6 +6,12 @@ if(!isset($_SESSION))
        session_start(); 
                 
     } 
+
+    if(!isset($_SESSION['currentUserLoggedInId'])) 
+    { 
+      $_SESSION['currentUserLoggedInId']=1;          
+    } 
+
 //save add to cart
 try {
    $conn = new PDO("sqlsrv:server = tcp:cakewebsitedb.database.windows.net,1433; Database = CakeDB", "AlbinoCakeWesite", "ACWdb#321");
@@ -114,9 +120,7 @@ include 'header.php';
 							                      <select name="size">
 
     												<option selected="selected" value="'.$row['cakeSize'].'">'.$row['cakeSize'].'</option>
-							                        <option class="dropdown-item" value="Small">Small(1 KG)</option>
-							                        <option class="dropdown-item" value="Medium">Medium(1.5 KG)</option>
-							                        <option class="dropdown-item" value="Large">Large(2 KG)</option>
+							                        
 							                      </select>
 							                  
 							                    </td><!-- drop down added -->
